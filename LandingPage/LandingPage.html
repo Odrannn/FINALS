@@ -25,7 +25,7 @@
 	}
 	nav{
 		background:black;
-		height:130px;
+		height:100px;
 		width:100%;
 		position:fixed;
 		border-top: 2px solid #C3083F;
@@ -38,28 +38,46 @@
 		font-size:50px;
 		font-weight:bold;
 		color:white;
-		line-height:130px;
+		line-height:100px;
 		padding:0px 50px;
 	}	
-	nav ul{
-		float:right;
-		margin-right:50px;
+	nav ul.navbar{
+		padding-top:25px;
+		margin-bottom:10px;
 	}
 	nav ul li{
-		display:inline-block;
-		line-height:130px;
-		margin:0 10px;
+		background:black;
+		width:170px;
+		height:50px;
+		line-height:50px;
+		text-align:center;
+		float:left;
+		position:relative;
+		color:white;
+		font-family: 'Bebas Neue', cursive;
+	}
+	nav ul ul{
+		display:none;
+	}
+	nav ul li:hover>ul{
+		display:block;
+	}
+	.sub li{
+		background:#4E4E50;
+	}
+	li:hover{
+		background:#C3083F;
 	}
 	nav ul li a{
-		font-family: 'Bebas Neue', cursive;
 		color:white;
 		font-size:22px;
 		padding: 8px 20px;
-		border-radius:5px;
 	}
-	a:hover, .select{
+	.select{
 		background:#4E4E50;
 	}
+	
+	
 	h1.banner{
 		font-family: 'Lobster', cursive;
 		color:white;
@@ -86,6 +104,7 @@
 		width:900px;
 		margin:0 auto;
 	}
+	
 	div.content p{
 		text-align:justify;
 	}
@@ -104,9 +123,16 @@
 		<div class="logo">
 			Ones Blog
 		</div>
-		<ul>
-			<li><a class="select"  href="../LandingPage/LandingPage.html">Home</a></li>
-			<li><a href="../AboutUs/AboutUs.html">About Us</a></li>
+		<ul class="navbar">
+			<li><a href="../LandingPage/LandingPage.html">Home</a></li>
+			<li class="select"><a>About Us</a>
+				<ul class="sub">
+					<li>About the Page</li>
+					<li>Our Story</li>
+					<li>Career</li>
+					<li>Meet the Team</li>
+					<li>FAQs</li>
+				</ul></li>
 			<li><a href="../Blog/Blog.html">Blog</a></li>
 			<li><a href="../ContactUs/ContactUs.html">Contact Us</a></li>
 			<li><a href="../PhotoGallery/PhotoGallery.html">Photo Gallery</a></li>
