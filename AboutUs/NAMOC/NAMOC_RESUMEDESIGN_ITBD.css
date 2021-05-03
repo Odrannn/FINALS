@@ -1,0 +1,54 @@
+body{
+  background-color: #56926E ;
+  padding-left:310px;
+  margin:0; padding:0;
+}
+#horizontal{
+  width:800px;
+  height:100%;
+  display: block;
+  margin: 0 auto; 
+  background-color: white;
+  border-left:100px #FFFFFF solid;
+  border-right:100px #FFFFFF solid;
+  }
+h1{
+  color:#56926E;
+  text-transform: uppercase;
+}
+h2{
+  font-family: Georgia;
+  font-style: Trebuchet MS ;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+
+}
+h3{
+  font-family: Arial;
+}
+
+p{ 
+  font-family: Georgia;
+}
+
+h4{
+	font-family: Georgia;
+}
+
+h6{
+  font-family: Georgia;
+  text-align: center;
+
+}
+
+
+.talent {
+	font-family: Georgia;
+    width: 40%;
+    float: left;
+}
+.last {
+	font-family: Georgia;
+    border: none;
+}

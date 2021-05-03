@@ -1,0 +1,32 @@
+	body {
+			background-color: #fefbd8;
+	}
+
+	h1 {
+			color: white;
+			background-color: #80ced6;
+			text-align: left;
+	}
+	h2 {
+			color: white;
+			background-color: #f18973;
+			text-align: left;
+	}
+	h4 {
+			color: white;
+			text-align: left;
+	}
+	ul {
+			background: #3399ff;
+			padding: 20px;
+	}
+
+	ul li {
+			background: #cce5ff;
+			margin: 5px;
+	}
+
+	p {
+   
+			font-size: 17px;
+	}

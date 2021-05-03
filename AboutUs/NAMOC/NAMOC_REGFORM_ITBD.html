@@ -1,0 +1,243 @@
+!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Simple Table in HTML</title>
+    <style type="text/css">
+		html, body {
+			height: 100%;
+		}
+		html {
+			display: table;
+			margin: auto;
+			background-color: #161240; 
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+		}
+		body {
+			display: table-cell;
+			vertical-align: middle;
+		}
+		.middle {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			width: 50%;
+		}
+		img {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+        table {
+            border: 1px solid black;
+            border-collapse: collapse;
+            margin: 5px auto;
+            box-shadow: 3px 3px 5px gray;
+        }
+		#orange{
+			background-color:#99d6ff;
+		}
+		#blue {
+			background-color:#DCECFB;
+		}
+        th, td {
+            border: 1px solid black;
+            padding: .2em .7em;
+			font-family:garamond
+        }
+        th.left, td.left {
+            text-align: left;
+        }
+		th.right, td.right {
+            text-align: right;
+        }
+        th.bottom {
+            vertical-align: bottom;
+        }
+        thead, tfoot {
+            background-color: #027c99;
+			font-family:tahoma;
+			color:white;
+        }
+        th.center, td.center {
+            text-align: center;
+        }
+        figure, figcaption {
+            margin: 0;
+            padding: 0;
+        }
+        figure{
+            border: 1px solid black;
+            width: 1300px;
+            padding: 20px;
+			box-shadow: 3px 3px 5px #027c99;
+        }
+        figcaption{
+            display: block;
+            font-weight: bold;
+            text-align: center;
+            font-size: 120%;
+            padding-bottom: .25em;
+        }
+    </style>
+</head>
+<body>
+    <link rel="stylesheet" type="text/css">
+	<!--NAMOC, JOSHUA-->
+    <!--4-24-2021-->
+    <figure  style="background-color:white;">
+        <figcaption>SECOND SEMESTER S.Y. 2020-2021</figcaption>
+		<table width="90%">
+        <thead>
+		
+            <tr>
+                <th class="center" style="width:100px" colspan="2">Subject and Section</th>
+				<th class="center" style="width:400px">Descriptive Title</th>
+				<th class="center" style="width:50px">Units</th>
+				<th class="center" style="width:50px">Schedule</th>
+				<th class="center">Time</th>
+				<th class="center">Room</th>
+				<th class="center" style="width:100px">Faculty</th>
+            </tr>
+			
+        </thead>
+        <tbody>
+		
+            <tr>
+                <td class="center" rowspan="2">CDT 1101</td>
+				<td class="center" rowspan="2">ITBD</td>
+                <td>Data  Analytics</td>
+                <td class="center">3</td>
+                <td class="center" >MW</td>
+				<td class="center" >1430-1530</td>
+				<td class="center" >CS 204</td>
+				<td class="center" id="blue" rowspan="2" style="width:200px">Bringula, Rex P.</td>
+            </tr>
+            <tr>
+                <td id="orange">Data Analytics - Laboratory</td>
+				<td class="center" id="orange">0</td>
+                <td class="center" id="orange">TTH</td>
+                <td class="center" id="orange">1440-1610</td>
+                <td class="center" id="orange">CIT CL C</td>
+            </tr>
+			
+            <tr>
+                <td class="center" rowspan="2">CHC 1101</td>
+				<td class="center" rowspan="2">ITBD</td>
+                <td>Human Computer Interaction</td>
+                <td class="center">3</td>
+                <td class="center" >MW</td>
+				<td class="center" >1100-1200</td>
+				<td class="center" >CS 209</td>
+				<td class="center" id="blue" rowspan="2">Geronimo, Sheila M.</td>
+            </tr>
+            <tr>
+                <td id="orange">Human Computer Interaction - Laboratory</td>
+				<td class="center" id="orange">0</td>
+                <td class="center" id="orange">TTH</td>
+                <td class="center" id="orange">0910-1040</td>
+                <td class="center" id="orange">CS BL B</td>
+            </tr>
+			
+			<tr>
+                <td class="center" rowspan="2">CIA 1101</td>
+				<td class="center" rowspan="2">ITBD</td>
+                <td>Information and Security Assurance 1</td>
+                <td class="center">3</td>
+                <td class="center" >MW</td>
+				<td class="center" >1320-1420</td>
+				<td class="center" >CS 208</td>
+				<td class="center" id="blue" rowspan="2" style="width:200px">Afable, Jovy M.</td>
+            </tr>
+            <tr>
+                <td id="orange">Information and Security Assurance 1 - Laboratory</td>
+				<td class="center" id="orange">0</td>
+                <td class="center" id="orange">TTH</td>
+                <td class="center" id="orange">0730-0900</td>
+                <td class="center" id="orange">CS BL B</td>
+            </tr>
+			
+			<tr>
+                <td class="center" rowspan="2">CIP 1101</td>
+				<td class="center" rowspan="2">ITBD</td>
+                <td>Integrative Programming and Technologies 1</td>
+                <td class="center">3</td>
+                <td class="center" >MW</td>
+				<td class="center" >0950-1050</td>
+				<td class="center" >CS 210</td>
+				<td class="center" id="blue" rowspan="2" style="width:200px">Ventura, Mary Grace G.</td>
+            </tr>
+            <tr>
+                <td id="orange">Integrative Programming and Technologies 1 - Laboratory</td>
+				<td class="center" id="orange">0</td>
+                <td class="center" id="orange">TTH</td>
+                <td class="center" id="orange">1050-1220</td>
+                <td class="center" id="orange">CS AL A</td>
+            </tr>
+			
+			<tr>
+                <td class="center" rowspan="2">CIT 2201</td>
+				<td class="center" rowspan="2">ITBD</td>
+                <td>Networking 1</td>
+                <td class="center">3</td>
+                <td class="center" >MW</td>
+				<td class="center" >1540-1640</td>
+				<td class="center" >CS 204</td>
+				<td class="center" id="blue" rowspan="2" style="width:200px">Ligas, Marc Rodin C.</td>
+            </tr>
+            <tr>
+                <td id="orange">Networking 1 - Laboratory</td>
+				<td class="center" id="orange">0</td>
+                <td class="center" id="orange">TTH</td>
+                <td class="center" id="orange">1300-1430</td>
+                <td class="center" id="orange">CIT CL A</td>
+            </tr>
+			
+			<tr>
+                <td class="center">PEN 4322</td>
+                <td class="center">5MC</td>
+				<td>Physical Education 4</td>
+                <td class="center">2</td>
+                <td class="center">MF</td>
+                <td class="center">0730-0830</td>
+				<td class="center">Gym 4A</td>
+				<td class="center" id="blue" style="width:200px">Barizo, Crisanto B.</td>
+            </tr>
+			
+			<tr>
+                <td class="center">CSA 1101</td>
+                <td class="center">ITBD</td>
+				<td>Systems Analysis, Design and Prototyping</td>
+                <td class="center">3</td>
+                <td class="center">MWF</td>
+                <td class="center">0730-0830</td>
+				<td class="center">CS 208</td>
+				<td class="center" id="blue" style="width:200px">Basa, Roselle S.</td>
+            </tr>
+			
+			<tr>
+                <td class="center">ZGE 4304</td>
+                <td class="center">ITBD</td>
+				<td> Living in the IT Era</td>
+                <td class="center">3</td>
+                <td class="center">MWF</td>
+                <td class="center">0840-0940</td>
+				<td class="center">Cs 210</td>
+				<td class="center" id="blue" style="width:200px">Geronimo, Sheila M.</td>
+            </tr>
+			
+        </tbody>
+        
+        <tfoot>
+            <tr>
+                <th class="right" colspan="3">Total Units&nbsp&nbsp</th>
+                <th class="left" colspan="5">&nbsp&nbsp&nbsp23</th>
+            </tr>
+        </tfoot>
+    </table>
+    </figure>
+</body>
+</html>

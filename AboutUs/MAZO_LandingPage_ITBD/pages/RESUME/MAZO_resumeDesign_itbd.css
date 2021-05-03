@@ -1,0 +1,164 @@
+		body {
+				font-family: Georgia;
+				background-color:#18191A;
+				color:white;
+		}
+		h1 {
+				text-indent: 30px;
+				font-family: 'Luckiest Guy', cursive; 
+				text-align:left;
+				font-size:5em;
+				text-transform:uppercase;
+				text-shadow: 10px 10px 1px black;
+				word-spacing:18px;
+				letter-spacing:10px;
+				line-height:0.5;
+				
+		}
+		h3{
+				text-align: left;
+				text-transform:uppercase;
+				letter-spacing:2px;
+				line-height:0;
+				text-indent: 30px;
+		}
+		
+		p {
+				text-align: justify;
+				text-indent: 80px;
+				font-size: 1.20em;
+				line-height: 1.5em;
+		}
+		
+		
+		hr{
+				text-align:left;
+				width: 100%;
+				height: 3px;
+				color: white;
+		}
+		
+		ol.main li{
+				list-style-type: upper-alpha;
+				text-transform:uppercase;
+				font-size: 1.20em;
+				text-indent: 41px;
+				list-style-position: inside;
+				font-style: oblique;
+		}
+		
+		ul.skills li{
+				text-transform:none;
+				list-style-type: disc;
+				font-style: normal;
+				
+		}
+		
+		ul.wd li{
+				list-style-type: circle;
+		}
+		
+		ul.history li{
+				display: inline-block;
+				margin: 0 10px;
+				text-transform:none;
+				font-style: normal;
+				
+		}
+		
+		ul.heading li{
+				display: inline-block;
+				margin: 0 10px;
+				text-transform:none;
+				font-style: normal;
+				margin-left: -50px;
+		
+		}
+		ul.heading{
+				background: #121212;
+				border-top: 3px solid #FF8B3D;
+				border-bottom: 3px solid #FF8B3D;
+		}
+		
+		li {
+				line-height: 30px;
+		}
+		
+		li.brdr ul li{
+				list-style-type: square;
+				display: list-item;
+				font-size: 1em;
+		}
+		
+		.brdr{
+				border-left: 5px solid gray;		
+		}
+		.v{
+				vertical-align:top;
+		}
+		
+		.l{
+				text-align:right;
+				text-indent: 800px;
+				vertical-align: top;
+				padding: 16px 18px;
+				font-size: 1.20em;
+				letter-spacing:2px;
+		}
+		
+		dl {
+				font-size: 1.20em;
+				text-indent: 80px;
+				line-height: 30px;
+		}
+		dt{
+				display: list-item;
+				list-style-type: disc;
+				list-style-position: inside;
+		}
+		.orange {
+				color: #FF8B3D;
+		}
+		.gray {
+				color: #D3D3D3;
+		}
+		a{
+				text-decoration:none;
+		}
+		
+		.picture{
+				float:left;
+				width:220px;
+				padding:40px 35px 20px 0px;
+		}
+		
+		li {
+			display: inline-block;
+			margin: 0 25px;
+		}
+		li.header {
+			font-size:48px;
+			margin-right:400px;
+			font-family: 'Luckiest Guy', cursive;
+			color:#18191A;
+			word-spacing:18px;
+			letter-spacing:4px;
+		}
+		li.navi a{
+			margin-bottom:10px;
+			font-family: 'Blinker', sans-serif;
+		}
+		li.navi a:hover{
+			color:#5CDB95;
+		}
+		li.navi a:active{
+			color:#18191A;
+		}
+		a {
+			text-decoration:none;
+			color:white;
+			font-size:20px;
+		}
+		div.navbar{
+			background-color: #FF4F2C;
+		}

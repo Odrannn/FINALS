@@ -1,0 +1,38 @@
+	body{
+			background-color: #182335;
+			font-family:Verdana, Tahoma, Sans-serif;
+	}
+	
+	h1{
+			text-align:center;
+			font-family: haettenschweiler;
+			font-size:3em
+			background-color: #E15546;
+			color:black;
+			text-transform:uppercase;
+			text-transform:uppercase
+			word-spacing:30px
+	}
+	center {
+			background-color: #E15546;
+	}
+	h2{
+			font-variant:small-caps;
+			font-style:oblique;
+			font-weight: 1000px
+			text-align:center
+	}
+	mark{
+			font-family Verdana;
+			background-color: #EEAF9D;
+	}
+	div{
+			text-align: justify
+	}
+	sup{
+			color:red;
+	}
+	p{
+			font-family: Verdana; 
+			color: #EAE4CC;
+	}

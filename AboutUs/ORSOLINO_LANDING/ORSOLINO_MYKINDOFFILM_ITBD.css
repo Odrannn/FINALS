@@ -1,0 +1,44 @@
+body{
+	text-align:center;
+	background-color:BLACK;
+	color:#710C04;
+	
+}
+h1{
+	color:#710C04; 
+	font-size:60px; 
+	border-style:double; 
+	background-color:white;
+}
+img{
+	border-style:double;
+	width:870px;
+	height:400px;
+}
+
+ul{
+	list-style:none;
+	text-align:center; 
+}
+
+li{
+	font-size:40px;
+	display:inline-block;
+	margin:10px;
+}
+a{
+	color:#710C04;
+}
+p{
+	font-size:20px;
+}
+a:active{
+	background-color:#E2252B;
+	color:white;
+}
+video{
+	width:420px;
+	height:240px;
+	margin:10px;
+	border-style:double;
+}

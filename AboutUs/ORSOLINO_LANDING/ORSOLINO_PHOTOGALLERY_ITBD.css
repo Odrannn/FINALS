@@ -1,0 +1,44 @@
+body{
+	color:maroon;
+	text-align:center;
+	background-color:black;
+}
+h1{
+	color:#710C04; 
+	font-size:40px; 
+	border-style:double; 
+	background-color:white;
+}
+img{
+	height:200px;
+	width:200px;
+	border: 5px outset maroon;
+	margin-left:auto;
+	margin-right:auto;
+	opacity:.65;
+}
+img:hover{
+	opacity:1;
+}
+figure {
+    display: inline-table;
+    margin: 20px; /* adjust as needed */
+}
+figure img {
+    vertical-align: top;
+}
+figure figcaption {
+	background-color:white;
+    border: 1px dotted maroon;
+    text-align: center;
+}
+ul{
+	list-style:none;
+	text-align:center; 
+}
+
+li{
+	font-size:18px;
+	display:inline-block;
+	margin:10px;
+}

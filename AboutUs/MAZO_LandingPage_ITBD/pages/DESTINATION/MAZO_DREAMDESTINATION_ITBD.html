@@ -1,0 +1,123 @@
+<!Doctype HTML>
+<html lang="en">
+<head>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Blinker&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <title>My Dream Destinations</title>
+	<script language="JavaScript">
+		function writeText(txt) {
+			document.getElementById("desc").innerHTML=txt;
+		}
+		
+		function dissolveText(txt) {
+			document.getElementById("desc").innerHTML=txt;
+		}
+		
+	</script>
+    <style type="text/css">
+		body{
+			background-color:#18191A;
+			color:white;
+		}
+		h1{
+			font-family: 'Blinker', sans-serif;
+			font-size:5em;
+			text-align:center;
+			text-shadow: 10px 10px black;
+		}
+		li {
+			display: inline-block;
+			margin: 0 25px;
+		}
+		li.header {
+			font-size:48px;
+			margin-right:400px;
+			font-family: 'Luckiest Guy', cursive;
+			color:#18191A;
+			word-spacing:18px;
+			letter-spacing:4px;
+			
+		}
+		li.navi a{
+			margin-bottom:10px;
+			font-family: 'Blinker', sans-serif;
+			
+		}
+		li.navi a:hover{
+			color:#5CDB95;
+		}
+		li.navi a:active{
+			color:#18191A;
+		}
+		a {
+			text-decoration:none;
+			color:white;
+			font-size:20px;
+		}
+		div.navbar{
+			background-color: #FF4F2C;
+		}
+		img{
+			border: 5px solid #FF4F2C;
+			border-right-color: #5CDB95;
+			border-bottom-color: #5CDB95;
+			box-shadow: 10px 10px black;
+		}
+		hr{
+			width:1010px;
+		}
+		p{
+			text-align:center;
+			font-family: 'Assistant', sans-serif;
+			font-size:1.2em;
+		}
+    </style>
+</head>
+
+<body>
+    <!--MAZO, BERNARD-->
+    <!--MARCH.30.2021-->
+	<div class="navbar">
+		<br>
+		<ul>
+		<li class="header">My Website</li>
+		<li class="navi"><a href="../MAZO_Homepage.html">Home</a></li>
+		<li class="navi"><a href="../BIO/MAZO_ABOUTME_ITBD.HTML">About Me</a></li>
+		<li class="navi"><a href="../RESUME/MAZO_RESUME_ITBD.HTML">My Resume</a></li>
+		<li class="navi"><a href="../MAZO_MyBeat_ITBD.html">My Beat</a></li>
+		<li class="navi"><a href="../MAZO_MyFilm_ITBD.html">My Kind of Film</a></li>
+		<li class="navi"><a href="../PHOTOGALLERY/MAZO_PhotoGallery_ITBD.html">Photo Gallery</a></li>
+		<li class="navi"><a href="#" style="color:black">Dream Destination</a></li>
+		</ul>
+		<br>
+	</div>
+	<br>
+    <h1>My Dream Destination</h1>
+	<hr>
+	<br>
+	<div align="center">
+		<img src="collage/1.png" usemap="#dreamDestination">
+		<map name="dreamDestination">
+			<area shape="rect" coords="437,290,870,572" href="LouvreMuseum.html" target="newWindow"
+			onMouseOver= "writeText('The Louvre Museum (Paris, France)');" onMouseOut="dissolveText('')"/>
+			<area shape="rect" coords="7,290,438,572" href="Colosseum.html" target="newWindow"
+			onMouseOver= "writeText('The Colosseum (Rome, Italy)');" onMouseOut="dissolveText('')"/>
+			<area shape="circle" coords="435,150,120" href="ElNidoPalawan.html" target="newWindow"
+			onMouseOver= "writeText('El Nido Palawan (Palawan, Philippines)');" onMouseOut="dissolveText('')"/>
+			<area shape="circle" coords="160,130,85" href="MtFuji.html" target="newWindow"
+			onMouseOver= "writeText('Mount Fuji (Kitayama, Fujinomiya, Shizuoka, Japan)');" onMouseOut="dissolveText('')"/>
+			<area shape="poly" coords="674,250,699,56,706,52,707,29,719,21,744,22,755,36,753,56,759,59,747,254" href="LeaningTowerofPisa.html" target="newWindow"
+			onMouseOver= "writeText('Leaning Tower of Pisa (Pisa, Italy)');" onMouseOut="dissolveText('')"/>
+		</map>
+	</div>
+	<br>
+	<hr>
+	<p id="desc"></p>
+	<br>
+</body>
+</html>

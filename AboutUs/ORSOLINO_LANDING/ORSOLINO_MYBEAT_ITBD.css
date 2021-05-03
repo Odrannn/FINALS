@@ -1,0 +1,45 @@
+body{
+	text-align:center;
+	background-color:BLACK;
+	color:#710C04;
+	
+}
+h1{
+	color:#710C04; 
+	font-size:60px; 
+	border-style:double; 
+	background-color:white;
+}
+img{
+	width:800px;
+	height:800px;
+	border-style:double;
+}
+
+ul{
+	list-style:none;
+	text-align:center; 
+}
+
+li{
+	font-size:40px;
+	display:inline-block;
+	margin:10px;
+}
+a{
+	margin-right:50px;
+	color:#710C04;
+}
+p{
+	font-size:20px;
+}
+a:active{
+	margin-left:20px;
+	background-color:#E2252B;
+	color:white;
+}
+pre{
+	text-align:left;
+	font-size:25px;
+	padding:0px;
+}

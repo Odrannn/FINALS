@@ -1,0 +1,259 @@
+<!Doctype HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Blinker&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300&display=swap" rel="stylesheet">
+    <title>My Photo Gallery</title>
+    <style type="text/css">
+		body{
+			background-color:#18191A;
+			color:white;
+		}
+		h1 {
+			text-align:left;
+			font-size:4em;
+			text-shadow: 5px 5px black;
+			text-transform:uppercase;
+			text-align:center;
+			font-family: 'Roboto', sans-serif;
+		}
+		p {
+			text-align:center;
+			text-transform:uppercase;
+			font-family: 'Assistant', sans-serif;
+			font-size:1.2em;
+		}
+		li {
+			display: inline-block;
+			margin: 0 25px;
+		}
+		li.header {
+			font-size:48px;
+			margin-right:400px;
+			font-family: 'Luckiest Guy', cursive;
+			color:#18191A;
+			word-spacing:18px;
+			letter-spacing:4px;
+			
+		}
+		li.navi a{
+			margin-bottom:10px;
+			font-family: 'Blinker', sans-serif;
+			
+		}
+		li.navi a:hover{
+			color:#5CDB95;
+		}
+		li.navi a:active{
+			color:#18191A;
+		}
+		a {
+			text-decoration:none;
+			color:white;
+			font-size:20px;
+		}
+		div.navbar{
+			background-color: #FF4F2C;
+		}
+		
+		a.goto p{
+			text-align:center; 
+			font-family:'Blinker', sans-serif;
+			margin-left:80px;
+			letter-spacing: 0px;
+			font-size:1.2em;
+		}
+		a.goto p:hover{
+			color:#FF4F2C;
+		}
+		a.top p{
+			text-align:center;
+			text-transform:none;
+			font-family: 'Assistant', sans-serif;
+			font-size:1em;
+		}
+		a.top p:hover{
+			color:#5CDB95;
+		}
+		a.top p:active{
+			color:grey;
+		}
+		
+		hr {
+			width:970px;
+		}
+		a.selected {
+			padding-bottom:10px;
+			border-bottom:2px solid #FF4F2C;
+			color:#FF4F2C;
+		}
+		a.notsel:hover{
+			padding-bottom:10px;
+			color:#5CDB95;
+		}
+		a.notsel:active{
+			padding-bottom:10px;
+			color:grey;
+			border-bottom:2px solid #FF4F2C;
+		}
+		img{
+			width:300px;
+			margin:15px;
+		}
+		img:hover{
+			border: 2px solid #5CDB95;
+			box-shadow:2px 2px #FF4F2C;
+			opacity:0.7;
+		}
+		
+		
+		div.con{
+			text-align:center;
+		}
+		
+		div.pics{
+			text-align:left;
+			display:inline-block;
+		}
+		
+    </style>
+</head>
+
+<body>
+    <!--MAZO, BERNARD -->
+    <!--DATE: -->
+	<div class="navbar">
+		<br>
+		<ul>
+		<li class="header">My Website</li>
+		<li class="navi"><a href="../MAZO_Homepage.html">Home</a></li>
+		<li class="navi"><a href="../BIO/MAZO_ABOUTME_ITBD.HTML">About Me</a></li>
+		<li class="navi"><a href="../RESUME/MAZO_RESUME_ITBD.HTML">My Resume</a></li>
+		<li class="navi"><a href="../MAZO_MyBeat_ITBD.html">My Beat</a></li>
+		<li class="navi"><a href="../MAZO_MyFilm_ITBD.html">My Kind of Film</a></li>
+		<li class="navi"><a href="#" style="color:black">Photo Gallery</a></li>
+		<li class="navi"><a href="../DESTINATION/MAZO_DREAMDESTINATION_ITBD.html">Dream Destination</a></li>
+		</ul>
+		<br>
+	</div>
+	<br>
+	
+	<h1>My Photo Gallery</h2>
+	<hr>
+	<p id="family"><a href="#family" class="selected">Family Pictures</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#friends" class="notsel">Close Friends</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#selfies" class="notsel">Selfies</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#poster" class="notsel">Poster of Album</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#film" class="notsel">My kind of film</a></p>
+	<br>
+	<br>
+	<div class="con">
+		<div class="pics">
+			<a href="Family/1.jpg" target="newWindow"><img src="Family/1.jpg"/></a>
+			<a href="Family/2.jpg" target="newWindow"><img src="Family/2.jpg"/></a>
+			<a href="Family/3.jpg" target="newWindow"><img src="Family/3.jpg"/></a><br>
+			<a href="Family/4.jpg" target="newWindow"><img src="Family/4.jpg"/></a>
+			<a href="Family/5.jpg" target="newWindow"><img src="Family/5.jpg"/></a>
+			<a href="Family/6.jpg" target="newWindow"><img src="Family/6.jpg"/></a><br>
+			<a href="Family/7.jpg" target="newWindow"><img src="Family/7.jpg"/></a>
+		</div>
+	</div>
+	
+	<a href="" class="top"><p>Go to top</p></a>
+	
+	<hr>
+	<p id="friends"><a href="#family" class="notsel">Family Pictures</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#friends" class="selected">Close Friends</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#selfies" class="notsel">Selfies</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#poster" class="notsel">Poster of Album</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#film" class="notsel">My kind of film</a></p>
+	<br>
+	<br>
+	<div class="con">
+		<div class="pics">
+			<a href="Closefriends/1.jpg" target="newWindow"><img src="Closefriends/1.jpg"/></a>
+			<a href="Closefriends/2.jpg" target="newWindow"><img src="Closefriends/2.jpg"/></a>
+			<a href="Closefriends/3.jpg" target="newWindow"><img src="Closefriends/3.jpg"/></a><br>
+			<a href="Closefriends/4.jpg" target="newWindow"><img src="Closefriends/4.jpg"/></a>
+			<a href="Closefriends/5.jpg" target="newWindow"><img src="Closefriends/5.jpg"/></a>
+			<a href="Closefriends/6.jpg" target="newWindow"><img src="Closefriends/6.jpg"/></a><br>
+			<a href="Closefriends/7.jpg" target="newWindow"><img src="Closefriends/7.jpg"/></a>
+		</div>
+	</div>
+	
+	<a href="" class="top"><p>Go to top</p></a>
+	
+	<hr>
+	<p id="selfies"><a href="#family" class="notsel">Family Pictures</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#friends" class="notsel">Close Friends</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#selfies" class="selected">Selfies</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#poster" class="notsel">Poster of Album</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#film" class="notsel">My kind of film</a></p>
+	<br>
+	<br>
+	<div class="con">
+		<div class="pics">
+			<a href="Selfies/1.jpg" target="newWindow"><img src="Selfies/1.jpg"/></a>
+			<a href="Selfies/2.jpg" target="newWindow"><img src="Selfies/2.jpg"/></a>
+			<a href="Selfies/3.jpg" target="newWindow"><img src="Selfies/3.jpg"/></a><br>
+			<a href="Selfies/4.jpg" target="newWindow"><img src="Selfies/4.jpg"/></a>
+			<a href="Selfies/5.jpg" target="newWindow"><img src="Selfies/5.jpg"/></a>
+			<a href="Selfies/6.jpg" target="newWindow"><img src="Selfies/6.jpg"/></a><br>
+			<a href="Selfies/7.jpg" target="newWindow"><img src="Selfies/7.jpg"/></a>
+		</div>
+	</div>
+	
+	<a href="" class="top"><p>Go to top</p></a>
+	
+	<hr>
+	<p id="poster"><a href="#family" class="notsel">Family Pictures</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#friends" class="notsel">Close Friends</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#selfies" class="notsel">Selfies</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#poster" class="selected">Poster of Album</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#film" class="notsel">My kind of film</a></p>
+	<br>
+	<br>
+	<div class="con">
+		<div class="pics">
+			<a href="Posterofalbum/1.jpg" target="newWindow"><img src="Posterofalbum/1.jpg"/></a>
+			<a href="Posterofalbum/2.jpg" target="newWindow"><img src="Posterofalbum/2.jpg"/></a>
+			<a href="Posterofalbum/3.jpg" target="newWindow"><img src="Posterofalbum/3.jpg"/></a><br>
+			<a href="Posterofalbum/4.jpg" target="newWindow"><img src="Posterofalbum/4.jpg"/></a>
+			<a href="Posterofalbum/5.jpg" target="newWindow"><img src="Posterofalbum/5.jpg"/></a>
+			<a href="Posterofalbum/6.jpg" target="newWindow"><img src="Posterofalbum/6.jpg"/></a><br>
+			<a href="Posterofalbum/7.jpg" target="newWindow"><img src="Posterofalbum/7.jpg"/></a>
+		</div>
+	</div>
+	
+	<a href="" class="top"><p>Go to top</p></a>
+	
+	<hr>
+	<p id="film"><a href="#family" class="notsel">Family Pictures</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#friends" class="notsel">Close Friends</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#selfies" class="notsel">Selfies</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#poster" class="notsel">Poster of Album</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#film" class="selected">My kind of film</a></p>
+	<br>
+	<br>
+	<div class="con">
+		<div class="pics">
+			<a href="Mykindoffilm/1.jpg" target="newWindow"><img src="Mykindoffilm/1.jpg"/></a>
+			<a href="Mykindoffilm/2.jpg" target="newWindow"><img src="Mykindoffilm/2.jpg"/></a>
+			<a href="Mykindoffilm/3.jpg" target="newWindow"><img src="Mykindoffilm/3.jpg"/></a><br>
+			<a href="Mykindoffilm/4.jpg" target="newWindow"><img src="Mykindoffilm/4.jpg"/></a>
+			<a href="Mykindoffilm/5.jpg" target="newWindow"><img src="Mykindoffilm/5.jpg"/></a>
+			<a href="Mykindoffilm/6.jpg" target="newWindow"><img src="Mykindoffilm/6.jpg"/></a><br>
+			<a href="Mykindoffilm/7.jpg" target="newWindow"><img src="Mykindoffilm/7.jpg"/></a>
+		</div>
+	</div>
+	<a href="" class="top"><p>Go to top</p></a>
+	<hr>
+</body>
+</html>

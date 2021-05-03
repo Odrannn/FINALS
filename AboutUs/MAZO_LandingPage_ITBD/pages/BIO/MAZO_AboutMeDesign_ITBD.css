@@ -1,0 +1,141 @@
+		body {
+				font-family:Verdana;
+				background-color:#18191A;
+				color:white;
+		}
+		h1 {
+				font-family: 'Luckiest Guy', cursive; 
+				text-align:center;
+				font-size:5em;
+				text-transform:uppercase;
+				text-shadow: 4px 2px 8px black;
+				word-spacing:18px;
+				letter-spacing:4px;
+				line-height:0;
+		}
+		h2{
+				font-family:Georgia;
+				font-style:oblique;
+				color:#5CDB95;
+				text-align:center;
+		}
+		h4{
+				font-family: 'Luckiest Guy', cursive;
+				color:white;
+				text-align:center;
+				letter-spacing:2px;
+		}
+		h5{
+				font-family: Verdana; 
+				text-align:center;
+				color:white;
+		}
+		p{
+				font-family: 'IBM Plex Mono', monospace;
+				line-height:1.5;
+				text-indent: 100px;
+				color:white;
+		}
+		sup {
+				color:#FF4F2C;
+		}
+		li {
+			display: inline-block;
+			margin: 0 25px;
+		}
+		li.header {
+			font-size:48px;
+			margin-right:400px;
+			font-family: 'Luckiest Guy', cursive;
+			color:#18191A;
+			word-spacing:18px;
+			letter-spacing:4px;
+		}
+		li.navi a{
+			margin-bottom:10px;
+			font-family: 'Blinker', sans-serif;
+		}
+		li.navi a:hover{
+			color:#5CDB95;
+		}
+		li.navi a:active{
+			color:#18191A;
+		}
+		a {
+			text-decoration:none;
+			color:white;
+			font-size:20px;
+		}
+		div.navbar{
+			background-color: #FF4F2C;
+		}
+		
+		
+		q {
+				color:#FF4F2C;
+		}
+		s {
+				color:white;
+		}
+		
+		img:hover{
+				opacity:0.75;
+		}
+		.childpic1{
+				float:left;
+				width:120px;
+				padding:0px 20px 20px 80px;
+		}
+		.childpic2{
+				float:right;
+				width:300px;
+				padding:40px 45px 20px 20px;
+		}
+		.childpic3{
+				float:left;
+				width:250px;
+				padding:0px 20px 20px 0px;
+		}
+		.teenpic1{
+				float:left;
+				width:300px;
+				padding:0px 20px 20px 80px;
+		}
+		.teenpic2{
+				float:right;
+				width:250px;
+				padding:0px 45px 20px 20px;
+		}
+		.teenpic3{
+				float:right;
+				width:150px;
+				padding:0px 0px 0px 20px;
+		}
+		.teenpic4{
+				float:right;
+				width:130px;
+				padding:20px 0px 20px 20px;
+		}
+		.collegepic1{
+				width:800px;
+				padding:20px;
+				display: block; 
+				margin-left: auto;
+				margin-right: auto;
+				border-radius:100px;
+		}
+		.collegepic2{
+				float:left;
+				width:300px;
+				padding:20px 20px 20px 80px;
+		}
+		.collegepic3{
+				float:right;
+				width:450px;
+				padding:20px 45px 20px 20px;
+		}
+		.collegepic4{
+				float:right;
+				width:450px;
+				padding:0px 0px 20px 20px;
+		}
