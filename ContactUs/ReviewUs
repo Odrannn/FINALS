@@ -190,7 +190,7 @@
 			<input type="text" id="email"name="email" size="60" placeholder="Type your email here" maxlength="50"><br>
 			<textarea rows="10" id="message"cols="56" placeholder="Type your message here"></textarea><br>
 			<input type="submit" id="btn1" value="SUBMIT"></th>
-		</form>
+	</form>
 	</div>
 </body>
 </html>
