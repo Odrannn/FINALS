@@ -82,7 +82,7 @@
 	} 
 	
 	#insta{
-		position:fixed;
+		position:absolute;
 		margin:auto;
 		width:80%;
 	}
@@ -96,11 +96,11 @@
 	} 
 	#search{
 		float:center;
-		position: fixed;
-		left:45%;
-		right:50;
-		top: 15%;
-		width: 10%;
+		position: absolute;
+		left:58%;
+		right:50%;
+		top: 33%;
+		width: 15%;
 		padding: 10px;
 	}
 	.hr {
@@ -110,7 +110,7 @@
 	.hr hr{
 		margin:auto;
 		align:center;
-		width:55%;
+		width:70%;
 	}
 	#menu li {
 		display:inline;
@@ -127,9 +127,19 @@
 		margin-left:5px;
 	}
 	
-	#pictures{
+	.pictures{
 		margin:auto;
-		width:50%
+		width:1500px;
+		height:1500px;
+		border:5px solid black;
+	}
+	.pictures img{
+		width:380px;
+		height:380px;
+		border:1px solid gray;
+		margin-top:30px;
+		margin-left:50px;
+		margin-right:50px;
 	}
 	
     </style>
@@ -178,9 +188,11 @@
 		<li><p><img src="IMAGES/tag.png" class="icon">TAGGED</p></li>
 	</ul>
 	</div>
-	
+	<br>
 	<div class="pictures">
-		<a><img src="IMAGES/asynch.jpg">
+		<a href=""><img src="IMAGES/asynch.jpg"></a>
+		<a href=""><img src="IMAGES/synch.jpg"></a>
+		<a href=""><img src="IMAGES/modular.png"></a>
 	</div>
 </body>
 </html>
