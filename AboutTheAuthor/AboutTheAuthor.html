@@ -81,7 +81,7 @@
 	.select{
 		background:#4E4E50;
 	}
-	p{
+	div.content p{
 		font-family: 'Quicksand', sans-serif;
 		margin:10px;
 		padding-top:10px;
@@ -89,7 +89,7 @@
 		line-height:2em;
 	}
 	
-	h1{
+	div.content h1{
 		font-family: 'Lobster', cursive;
 		text-align:center;
 		color:black;
@@ -106,6 +106,54 @@
 		border:none;
 		height:3px;
 		background:black;
+	}
+	
+	
+	div.footer{
+		background:black;
+	}
+	div.footer h1{
+		font-family: 'Lobster', cursive;
+		font-size: 3em;
+		color:white;
+		padding:50px 0 0 150px;
+	}
+	div.footer p{
+		color:white;
+		font-size:1.2em;
+		font-family: 'Quicksand', sans-serif;
+		padding:50px 0 0 150px;
+		line-height:40px;
+	}
+	
+	div.fcontent{
+		display:block;
+		margin:auto;
+		width:2000px;
+	}
+	div.fcontent a{
+		color:white;
+	}
+	div.fcontent a:hover{
+		color:#C3083F;
+	}
+	div.fright ul li{
+		display:inline-block;
+		margin: 0 30px;
+	}
+	div.fright ul li p{
+		display:inline-block;
+		padding:0;
+	}
+	div.fright{
+		display:inline-block;
+		float:right;
+		padding:50px 150px 0 0;
+		margin-right:150px;
+		width:50%
+	}
+	div.fright p:hover{
+		color:#C3083F;
 	}
     </style>
 </head>
@@ -153,6 +201,28 @@
 		expect him to come along. With his work routine, he may not sometimes understand things, he’d still make sure to find a way and fix the problem.</p>
 		<br><br>
 	</div>
-
+	<br>
+	<div class="footer">
+		<div class="fcontent">
+			<div class="fright">
+				<ul>
+					<li><a href="../LandingPage/LandingPage.html"><p>HOME</p></a></li>
+					<li><a href="../AboutUs/AboutThePage/AboutThePage.html"><p>ABOUT THE PAGE</p></a></li>
+					<li><a href="#"><p>OUR STORY</p></a></li>
+					<li><a href="#"><p>CAREER</p></a></li>
+					<li><a href="../AboutUs/MeetTheTeam/MeetTheTeam.html"><p>MEET THE TEAM</p></a></li><br>
+					<li><a href="../AboutUs/FAQ/FAQ.html"><p>FAQS</p></a></li>
+					<li><a href="../Blog/Blog.html"><p>BLOG</p></a></li>
+					<li><a href="../ContactUs/ContactUs.html"><p>CONTACT US</p></a></li>
+					<li><a href="../PhotoGallery/PhotoGallery.html"><p>PHOTOGALLERY</p></a></li>
+					<li><a href="../AboutTheAuthor/AboutTheAuthor.html"><p>ABOUT THE AUTHOR</p></a></li>
+				</ul>
+			</div>
+			<h1 style="color:white;">Ones Blog</h1>
+			<p>@Ones Blog, ITBD Group 1, 2021<br>
+			<a href="../PrivacyPolicy/PrivacyPolicy.html">PRIVACY POLICY</a> | <a href="#">DEFINITION OF TERMS</a></p>
+			<br><br>
+		</div>
+	</div>
 </body>
 </html>
