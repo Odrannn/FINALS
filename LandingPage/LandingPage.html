@@ -116,7 +116,7 @@
 		padding:10px 0;
 	}
 	div.content{
-		width:900px;
+		width:1500px;
 		margin:0 auto;
 	}
 	
@@ -131,7 +131,11 @@
 	}
 	div.content a{
 		font-weight:bold;
-		padding-left:690px;
+		color: #C3083F;
+		float:right;
+	}
+	div.content a:hover{
+		color: #940741;
 	}
 	div.banner{
 		width:1920px;
@@ -148,6 +152,55 @@
 	div.topic{
 		width:1000px;
 	}
+	div.side{
+		display:inline-block;
+		float:right;
+		margin:100px 0px 0 20px;
+	}
+	div.footer{
+		background:black;
+	}
+	div.footer h1{
+		font-family: 'Lobster', cursive;
+		color:white;
+		padding:50px 0 0 150px;
+	}
+	div.footer p{
+		color:white;
+		padding:50px 0 0 150px;
+		line-height:40px;
+	}
+	
+	div.fcontent{
+		display:block;
+		margin:auto;
+		width:2000px;
+	}
+	div.fcontent a{
+		color:white;
+	}
+	div.fcontent a:hover{
+		color:#C3083F;
+	}
+	div.fright ul li{
+		display:inline-block;
+		margin: 0 30px;
+	}
+	div.fright ul li p{
+		display:inline-block;
+		padding:0;
+	}
+	div.fright{
+		display:inline-block;
+		float:right;
+		padding:50px 150px 0 0;
+		margin-right:150px;
+		width:50%
+	}
+	div.fright p:hover{
+		color:#C3083F;
+	}
+	
     </style>
 </head>
 <body>
@@ -192,8 +245,11 @@
 	</div>
 	<br>
 	<br>
-	<div class="latest"><h2>Latest Blog</h2></div>
 	<div class="content">
+		<div class="side">
+			<img style="width:700px;" src="Images/onlineExp.jpg"/>
+		</div>
+		<h2>Latest Blog</h2>
 		<h1>OUR ONLINE LEARNING EXPERIENCE</h1>
 		<br>
 		<hr noshade>
@@ -202,9 +258,32 @@
 		especially in the Philippines since Covid-19 virus hit the world. At first, this unusual type of learning resulted
 		to different types of effect to the students since every student lives differently compared to each other. Though
 		online learning made students be able to study eventhough we are currently facing a pandemic, a lot of students didn't
-		have the capability to continue their education because financial problem....<br>
-		<a href="../Blog/Opinion-based/MAZO_OnlineExp.html">Continue Reading&gt;&gt;</a></p>
+		have the capability to continue their education because financial problem....<br><br>
+		<a href="../Blog/Opinion-based/MAZO_OnlineExp.html"><h2>Continue Reading&gt;&gt;</h2></a></p>
 	</div>
 	<br>
+	<div class="footer">
+		<div class="fcontent">
+			<div class="fright">
+				<ul>
+					<li><a href="../LandingPage/LandingPage.html"><p>HOME</p></a></li>
+					<li><a href="../AboutUs/AboutThePage/AboutThePage.html"><p>ABOUT THE PAGE</p></a></li>
+					<li><a href="#"><p>OUR STORY</p></a></li>
+					<li><a href="#"><p>CAREER</p></a></li>
+					<li><a href="../AboutUs/MeetTheTeam/MeetTheTeam.html"><p>MEET THE TEAM</p></a></li><br>
+					<li><a href="../AboutUs/FAQ/FAQ.html"><p>FAQS</p></a></li>
+					<li><a href="../Blog/Blog.html"><p>Blog</p></a></li>
+					<li><a href="../ContactUs/ContactUs.html"><p>CONTACT US</p></a></li>
+					<li><a href="../PhotoGallery/PhotoGallery.html"><p>PHOTOGALLERY</p></a></li>
+					<li><a href="../AboutTheAuthor/AboutTheAuthor.html"><p>ABOUT THE AUTHOR</p></a></li>
+				</ul>
+			</div>
+			<h1 style="color:white;">Ones Blog</h1>
+			<p>@Ones Blog, ITBD Group 1, 2021<br>
+			<a href="../PrivacyPolicy/PrivacyPolicy.html">PRIVACY POLICY</a></p>
+			<br><br>
+		</div>
+	</div>
 </body>
+
 </html>
