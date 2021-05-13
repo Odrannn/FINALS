@@ -144,6 +144,7 @@
 		width:50%;
 		margin:auto;
 		border:5px solid black;
+		overflow:auto;
 	}
 	#header h1{
 		display:inline;
@@ -152,12 +153,55 @@
 		font-size:90px;
 		padding-left:100px;
 	}
-	#header ul li{
-		display:inline;
-		vertical-align:top;
-		text-align:center;
+	#header img{
+		float:left;
+	}
+	div.footer{
+		background:black;
+	}
+	div.footer h1{
+		font-family: 'Lobster', cursive;
+		font-size: 3em;
+		color:white;
+		padding:50px 0 0 150px;
+	}
+	div.footer p{
+		color:white;
+		font-size:1.2em;
+		font-family: 'Quicksand', sans-serif;
+		padding:50px 0 0 150px;
+		line-height:40px;
 	}
 	
+	div.fcontent{
+		display:block;
+		margin:auto;
+		width:2000px;
+	}
+	div.fcontent a{
+		color:white;
+	}
+	div.fcontent a:hover{
+		color:#C3083F;
+	}
+	div.fright ul li{
+		display:inline-block;
+		margin: 0 30px;
+	}
+	div.fright ul li p{
+		display:inline-block;
+		padding:0;
+	}
+	div.fright{
+		display:inline-block;
+		float:right;
+		padding:50px 150px 0 0;
+		margin-right:150px;
+		width:50%
+	}
+	div.fright p:hover{
+		color:#C3083F;
+	}
     </style>
 </head>
 <body>
@@ -186,7 +230,7 @@
 	</nav>
 	<Br><br><br><br><br><Br>
 	<div id="insta">
-		<h5>Instagram</h5>
+		<h5>Photo Gallery</h5>
 		<input type="text" id="search" name="search" DISABLED placeholder="SEARCH"> 
 
 	</div>
@@ -195,10 +239,8 @@
 	<br><br><br>
 	<div id="header">
 		<img src="IMAGES/logo.jpg">
-		<UL>
-			<li><h1>ONLINE LEARNING</h1></li>
-		</ul>
-		
+		<h1>ONLINE LEARNING</h1>
+		<h1>Philip burat</h1>
 	</div><br>
 	
 	<div class="hr">
@@ -221,6 +263,29 @@
 		<a href="../blog/Fact-based/LINO_Tools3.html"><img src="IMAGES/adaptation.png"></a>
 		<a href="../blog/Fact-based/RIGO_Learning.html"><img src="IMAGES/learning.jpg"></a>
 		<a href="../blog/Fact-based/MAZO_ELearning.html"><img src="IMAGES/proscons.jpg"></a>
+	</div>
+	<br>
+	<div class="footer">
+		<div class="fcontent">
+			<div class="fright">
+				<ul>
+					<li><a href="../../LandingPage/LandingPage.html"><p>HOME</p></a></li>
+					<li><a href="../../AboutUs/AboutThePage/AboutThePage.html"><p>ABOUT THE PAGE</p></a></li>
+					<li><a href="../../AboutUs/Story/Story.html"><p>OUR STORY</p></a></li>
+					<li><a href="../../AboutUs/Career/Career.html"><p>CAREER</p></a></li>
+					<li><a href="../../AboutUs/MeetTheTeam/MeetTheTeam.html"><p>MEET THE TEAM</p></a></li><br>
+					<li><a href="../../AboutUs/FAQ/FAQ.html"><p>FAQS</p></a></li>
+					<li><a href="../../Blog/Blog.html"><p>BLOG</p></a></li>
+					<li><a href="../../ContactUs/ContactUs.html"><p>CONTACT US</p></a></li>
+					<li><a href="../../PhotoGallery/PhotoGallery.html"><p>PHOTOGALLERY</p></a></li>
+					<li><a href="../../AboutTheAuthor/AboutTheAuthor.html"><p>ABOUT THE AUTHOR</p></a></li>
+				</ul>
+			</div>
+			<h1 style="color:white;">Ones Blog</h1>
+			<p>@Ones Blog, ITBD Group 1, 2021<br>
+			<a href="../../PrivacyPolicy/PrivacyPolicy.html">PRIVACY POLICY</a> | <a href="#">DEFINITION OF TERMS</a></p>
+			<br><br>
+		</div>
 	</div>
 </body>
 </html>
