@@ -109,7 +109,21 @@
 		background-color: #4E4E50;
 		color:white;
 	}
-
+	input[type=reset]{
+		width:150px;
+		color:white;
+		margin: 8px 0;
+		border:none;
+		border-radius:4px;
+		cursor:pointer;
+		font-family: 'Bebas Neue', cursive;
+		font-size:19px;
+		padding:10px;
+		background:#C3083F;
+	}
+	input[type=reset]:hover{
+		background-color: #940741;
+	}
 	div.right {
 		float:right;
 		width: 52%;
@@ -258,6 +272,7 @@
 			<input type="text" id="email"name="email" size="60" placeholder="Type your email here" maxlength="50"><br>
 			<label for="name">MESSAGE</label><br>
 			<textarea rows="10" id="message"cols="56" placeholder="Type your message here"></textarea><br>
+			<input type="reset" id="btn1" value="reset"></th>
 			<input type="submit" id="btn1" value="SUBMIT"></th>
 		</form>
 		<br>
