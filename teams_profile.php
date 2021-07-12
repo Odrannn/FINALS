@@ -110,161 +110,209 @@
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Teams</h6>
                         </div>
-	<div class="container search-table"> 
-		<div class="search-box">
-			<div class="row">
-                <div class="col-md-12">
-                    <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Search all fields..." name="search">
-                    <script>
-						$(document).ready(function () {
-							$("#myInput").on("keyup", function () {
-								var value = $(this).val().toLowerCase();
-								$("#myTable tr").filter(function () {
-									$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-								});
-							});
-                        });
-                    </script>
-                </div> 
-            </div>
-		</div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Team ID</th>
-                                            <th>Team Name</th>
-                                            <th>Team Moniker</th>
-                                            <th>Team Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody><?php
-						$hostName = "localhost";
-						$userName = "root";
-						$password = "";
-						$dbName = "pba";
-						
-						$connection = mysqli_connect($hostName, $userName, $password, $dbName);
-	
-						if (!$connection) 
-						{
-							die("Connection failed: " . mysqli_connect_error());
-						}
-						
-						$sql = "SELECT * FROM teams";
-						$result = mysqli_query($connection, $sql);
-						
-						if (!$result || mysqli_num_rows($result) == 0)
-						{	
-							echo "<tr>";
-							echo "<td colspan='5'><center><h2>Record not found!...</center></h2></td>";
-							echo "</tr>";
-						} 
-						else 
-						{
-							$counter = 0;
-							while ($row = mysqli_fetch_assoc($result)) 
-							{
-								echo "<tr class='" . ($counter == 1 ? "" : "success") . "'>";
-								echo "<th scope='row'>", $row["team_id"], "</th>";
-								echo "<td>", $row["team_name"], "</td>";
-								echo "<td>", $row["team_monicker"], "</td>";
-								echo "<td>", $row["team_status"] ? "Active" : "Inactive", "</td>";
-								echo "<td>", "<a href='display_to_next_page.php?team_id=" . $row["team_id"] . "'>", "<center><span class='glyphicon glyphicon-search'></center>" , "</a>", "</td>";
-								$counter = $counter == 0 ? 1 : 0;
-							}	
-						}
-						mysqli_close($connection);
-					?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-				<div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Team Registration</h6>
-                        </div>
-					<div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Team Name</th>
-                                            <th>Team Monicker</th>
-											<th>Operation</th>
+						<div class="container search-table"> 
+							<div class="search-box">
+								<div class="row">
+									<div class="col-md-12">
+										<input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Search all fields..." name="search">
+										<script>
+											$(document).ready(function () {
+												$("#myInput").on("keyup", function () {
+													var value = $(this).val().toLowerCase();
+													$("#myTable tr").filter(function () {
+														$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+													});
+												});
+											});
+										</script>
+									</div> 
+								</div>
+							</div>
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+									<thead>
+										<tr>
+											<th>Team ID</th>
+											<th>Team Name</th>
+											<th>Team Moniker</th>
+											<th>Team Status</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td><div class="form-group">
-													<div class="col-md-5">
-														<input id="textinput" name="teamName" type="text" placeholder="Team Name" class="form-control input-md" required="" value="<?php if (isset($_POST['teamName'])) {echo $_POST['teamName'];} ?>">
-													</div>
-												</div>
-											</td>
-											<td><div class="form-group">
-													<div class="col-md-5">
-														<input id="textinput" name="teamMoniker" type="text" placeholder="Team Moniker" class="form-control input-md" required="" value="<?php if (isset($_POST['teamMoniker'])) {echo $_POST['teamMoniker'];} ?>">
-													</div>
-												</div>
-											</td>
-											<td><div class="form-group">
-													<div class="col-md-6">
-														<button id="add" name="add" class="btn btn-primary">Add Team</button>
-													</div>
-												</div>
-											</td>
-										<tr>
+										<?php
+											$hostName = "localhost";
+											$userName = "root";
+											$password = "";
+											$dbName = "pba";
+															
+											$connection = mysqli_connect($hostName, $userName, $password, $dbName);
+										
+											if (!$connection) 
+											{
+												die("Connection failed: " . mysqli_connect_error());
+											}
+															
+											$sql = "SELECT * FROM teams";
+											$result = mysqli_query($connection, $sql);
+															
+											if (!$result || mysqli_num_rows($result) == 0)
+											{	
+												echo "<tr>";
+												echo "<td colspan='5'><center><h2>Record not found!...</center></h2></td>";
+												echo "</tr>";
+											} 
+											else 
+											{
+												$counter = 0;
+												while ($row = mysqli_fetch_assoc($result)) 
+												{
+													echo "<tr class='" . ($counter == 1 ? "" : "success") . "'>";
+													echo "<th scope='row'>", $row["team_id"], "</th>";
+													echo "<td>", $row["team_name"], "</td>";
+													echo "<td>", $row["team_moniker"], "</td>";
+													echo "<td>", $row["team_status"] ? "Active" : "Inactive", "</td></tr>";
+													$counter = $counter == 0 ? 1 : 0;
+												}	
+											}
+											mysqli_close($connection);
+										?>
 									</tbody>
 								</table>
 							</div>
 						</div>
-                </div>
-                <!-- /.container-fluid -->
-				
-			<div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Edit Team</h6>
-                        </div>
-					<div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Team Name</th>
-                                            <th>Team Monicker</th>
+					</div>
+					<form class="form-horizontal" action="" method="post">
+						<div class="card shadow mb-4">
+							<div class="card-header py-3">
+								<h6 class="m-0 font-weight-bold text-primary">Team Registration</h6>
+							</div>
+							<div class="card-body">
+								<div class="table-responsive">
+									<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+										<thead>
+											<tr>
+												<th>Team Name</th>
+												<th>Team Moniker</th>
+												<th>Operation</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>
+													<div class="form-group">
+														<div class="col-md-5">
+															<input id="textinput" name="teamName" type="text" placeholder="Team Name" class="form-control input-md" required="" value="<?php if (isset($_POST['teamName'])) {echo $_POST['teamName'];} ?>">
+														</div>
+													</div>
+												</td>
+												<td>
+													<div class="form-group">
+														<div class="col-md-5">
+															<input id="textinput" name="teamMoniker" type="text" placeholder="Team Moniker" class="form-control input-md" required="" value="<?php if (isset($_POST['teamMoniker'])) {echo $_POST['teamMoniker'];} ?>">
+														</div>
+													</div>
+												</td>
+												<td>
+													<div class="form-group">
+														<div class="col-md-6">
+															<button id="add" name="add" class="btn btn-primary">Add Team</button>
+														</div>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<?php
+										if (isset($_POST['add']))
+										{
+											if (isset($_POST['teamName']) and isset($_POST['teamMoniker']))
+											{
+												$hostName = "localhost";
+												$userName = "root";
+												$password = "";
+												$dbName = "pba";
+
+												$connection = mysqli_connect($hostName, $userName, $password, $dbName);
+										
+												if (!$connection) 
+												{
+													die("Connection failed: " . mysqli_connect_error());
+												}
+											
+												$sql = "SELECT * FROM teams WHERE team_name = '" . $_POST['teamName'] . "'";
+												$result = mysqli_query($connection, $sql);
+											
+												if(!$result || mysqli_num_rows($result) == 0)
+												{	
+													$sql = "INSERT INTO teams (team_name, team_moniker, team_status) VALUES ('" . $_POST['teamName'] . "', '" . $_POST['teamMoniker'] . "', 1)";
+											
+													if (mysqli_query($connection, $sql)) 
+													{
+														echo "<div class='alert alert-success' role='alert'><strong>Sucess:</strong> New team successfully created!</div>";
+													}
+													else
+													{
+														echo "<h1>Error: " . $sql . "<br>" . mysqli_error($connection) . "</h1>";
+													}
+												} 
+												else 
+												{
+													echo "<div class='alert alert-danger' role='alert'><strong>Error:</strong> Team Name already existing!...</div>";	
+												}
+											}
+										}
+									?>
+								</div>
+							</div>
+						</div>
+					</form>
+					<!-- /.container-fluid -->	
+					<div class="card shadow mb-4">
+						<div class="card-header py-3">
+							<h6 class="m-0 font-weight-bold text-primary">Edit Team</h6>
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+									<thead>
+										<tr>
+											<th>Team Name</th>
+											<th>Team Moniker</th>
 											<th>Operation</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<td><div class="form-group">
+											<td>
+												<div class="form-group">
 													<div class="col-md-5">
 														<input id="textinput" name="teamName" type="text" placeholder="Team Name" class="form-control input-md" required="" value="<?php if (isset($_POST['teamName'])) {echo $_POST['teamName'];} ?>">
 													</div>
 												</div>
 											</td>
-											<td><div class="form-group">
+											<td>
+												<div class="form-group">
 													<div class="col-md-5">
 														<input id="textinput" name="teamMoniker" type="text" placeholder="Team Moniker" class="form-control input-md" required="" value="<?php if (isset($_POST['teamMoniker'])) {echo $_POST['teamMoniker'];} ?>">
 													</div>
 												</div>
 											</td>
-											<td><div class="form-group">
+											<td>
+												<div class="form-group">
 													<div class="col-md-6">
 														<button id="add" name="add" class="btn btn-primary">EDIT</button>
 													</div>
 												</div>
 											</td>
-										<tr>
+										</tr>
 									</tbody>
 								</table>
 							</div>
 						</div>
-
-            </div>
+					</div>
+				</div>
 									
 			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <!-- Footer -->
@@ -277,10 +325,11 @@
             </footer>
             <!-- End of Footer -->
 
-        </div>
+			</div>
         <!-- End of Content Wrapper -->
 
-    </div>
+		</div>
+	</div>
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
@@ -309,52 +358,3 @@
 </body>
 
 </html>
-
-<?php
-	session_start();
-	if (isset($_POST['add']))
-	{
-		if (isset($_POST['teamName']) and isset($_POST['teamMonicker']))
-		{
-			$hostName = "localhost";
-			$userName = "root";
-			$password = "";
-			$dbName = "pba";
-
-			$connection = mysqli_connect($hostName, $userName, $password, $dbName);
-	
-			if (!$connection) 
-			{
-				die("Connection failed: " . mysqli_connect_error());
-			}
-		
-			$sql = "SELECT * FROM teams WHERE team_name = '" . $_POST['teamName'] . "'";
-			$result = mysqli_query($connection, $sql);
-		
-			if(!$result || mysqli_num_rows($result) == 0)
-			{	
-				$sql = "INSERT INTO teams (team_name, team_monicker, team_status) VALUES ('" . $_POST['teamName'] . "', '" . $_POST['teamMonicker'] . "', 1)";
-		
-				if (mysqli_query($connection, $sql)) 
-				{
-					echo "<div class='alert alert-success' role='alert'><strong>Sucess:</strong> New team successfully created!</div>";
-				}
-				else
-				{
-					echo "<h1>Error: " . $sql . "<br>" . mysqli_error($connection) . "</h1>";
-				}
-			} 
-			else 
-			{
-				echo "<div class='alert alert-danger' role='alert'><strong>Error:</strong> Team Name already existing!...</div>";	
-			}
-		}
-	}
-	else if (isset($_POST['back']))
-	{
-		$_SESSION['filterKeyword'] = $_POST['filterKeyword'];
-		header("Location: filter_teams.php");
-	}
-
-	
-?>
