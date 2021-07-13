@@ -26,6 +26,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	
+	
 	-->
 
 </head>
@@ -110,76 +111,176 @@
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Teams</h6>
                         </div>
-						<div class="container search-table"> 
-							<div class="search-box">
-								<div class="row">
-									<div class="col-md-12">
-										<input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Search all fields..." name="search">
-										<script>
-											$(document).ready(function () {
-												$("#myInput").on("keyup", function () {
-													var value = $(this).val().toLowerCase();
-													$("#myTable tr").filter(function () {
-														$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-													});
-												});
-											});
-										</script>
-									</div> 
+						<div>
+						<br>
+							<form class="form-horizontal" action="" method="post">
+								<div class="form-group" style ="width:100%">
+									<div class="col-md-5">
+										<input id="textinput" name="filterKeyword" type="text" placeholder="Type team name keyword..." class="form-control input-md" value="<?php echo isset($_POST['filterKeyword']) ? $_POST['filterKeyword'] : (isset($_SESSION['filterKeyword']) ? $_SESSION['filterKeyword'] : ''); ?>">
+										<button id="button1id" name="search" class="btn btn-primary">Search</button>
+									</div>
 								</div>
-							</div>
+							</form>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<thead>
 										<tr>
-											<th>Team ID</th>
-											<th>Team Name</th>
-											<th>Team Moniker</th>
-											<th>Team Status</th>
+											<th scope="col">Team ID</th>
+											<th scope="col">Team Name</th>
+											<th scope="col">Team Moniker</th>
+											<th scope="col">Status</th>
+											<th scope="col">Operation</th>
 										</tr>
 									</thead>
 									<tbody>
-										<?php
-											$hostName = "localhost";
-											$userName = "root";
-											$password = "";
-											$dbName = "pba";
-															
-											$connection = mysqli_connect($hostName, $userName, $password, $dbName);
 										
-											if (!$connection) 
+										<?php
+											if (isset($_POST['filterKeyword']))
 											{
-												die("Connection failed: " . mysqli_connect_error());
-											}
-															
-											$sql = "SELECT * FROM teams";
-											$result = mysqli_query($connection, $sql);
-															
-											if (!$result || mysqli_num_rows($result) == 0)
-											{	
-												echo "<tr>";
-												echo "<td colspan='5'><center><h2>Record not found!...</center></h2></td>";
-												echo "</tr>";
-											} 
-											else 
-											{
-												$counter = 0;
-												while ($row = mysqli_fetch_assoc($result)) 
+												$hostName = "localhost";
+												$userName = "root";
+												$password = "";
+												$dbName = "pba";
+
+												$connection = mysqli_connect($hostName, $userName, $password, $dbName);
+								
+												if (!$connection) 
 												{
-													echo "<tr class='" . ($counter == 1 ? "" : "success") . "'>";
-													echo "<th scope='row'>", $row["team_id"], "</th>";
-													echo "<td>", $row["team_name"], "</td>";
-													echo "<td>", $row["team_moniker"], "</td>";
-													echo "<td>", $row["team_status"] ? "Active" : "Inactive", "</td></tr>";
-													$counter = $counter == 0 ? 1 : 0;
-												}	
+													die("Connection failed: " . mysqli_connect_error());
+												}
+												
+												$sql = "SELECT * FROM teams WHERE team_name LIKE '%" . $_POST['filterKeyword'] . "%'";
+												$result = mysqli_query($connection, $sql);
+												
+												if (!$result || mysqli_num_rows($result) == 0)
+												{	
+													echo "<tr>";
+													echo "<td colspan='5'><center><h2>Record not found!...</center></h2></td>";
+													echo "</tr>";
+												} 
+												else 
+												{
+													$counter = 0;
+													while ($row = mysqli_fetch_assoc($result)) 
+													{
+														echo "<tr class='" . ($counter == 1 ? "" : "success") . "'>";
+														echo "<th scope='row'>", $row["team_id"], "</th>";
+														echo "<td>", $row["team_name"], "</td>";
+														echo "<td>", $row["team_moniker"], "</td>";
+														echo "<td>", $row["team_status"] ? "Active" : "Inactive", "</td>";
+														echo "<td><a href='teams_profile.php?team_id=" . $row["team_id"] . "'><button id='add' name='add' class='btn btn-primary'>Edit </button></td>";
+														echo "</tr>";
+														$counter = $counter == 0 ? 1 : 0;
+													}	
+												}
+												mysqli_close($connection);
 											}
-											mysqli_close($connection);
 										?>
 									</tbody>
 								</table>
+							</div>
+<<<<<<< HEAD
+						</div>
+					</div>
+					<div class="card shadow mb-4">
+						<div class="card-header py-3">
+							<h6 class="m-0 font-weight-bold text-primary">Edit Team</h6>
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+									<thead>
+										<tr>
+											<th>Team Name</th>
+											<th>Team Moniker</th>
+											<th>Status</th>
+										</tr>
+									</thead>
+									<tbody>
+=======
+							<div class="card-body">
+								<div class="table-responsive">
+									<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+										<thead>
+											<tr>
+												<th>Team ID</th>
+												<th>Team Name</th>
+												<th>Team Moniker</th>
+												<th>Team Status</th>
+											</tr>
+										</thead>
+										<tbody>
+>>>>>>> 45c6c35889a08ced1785146bc90cd5cd142b18bb
+										<?php
+										
+											if (isset($_GET['team_id']))
+											{
+												$hostName = "localhost";
+												$userName = "root";
+												$password = "";
+												$dbName = "pba";
+
+												$connection = mysqli_connect($hostName, $userName, $password, $dbName);
+											
+												if (!$connection) 
+												{
+													die("Connection failed: " . mysqli_connect_error());
+												}
+											
+												$sql = "SELECT * FROM teams where team_id = " . $_GET['team_id'];
+												$result = mysqli_query($connection, $sql);
+											
+												mysqli_close($connection);
+												if (!$result || mysqli_num_rows($result) == 0)
+												{	
+													echo "<h1>Record not found!.</h1>";
+												} 
+												else 
+												{
+													while ($row = mysqli_fetch_assoc($result)) 
+													{
+														
+														echo "<h1><strong>Team ID:</strong> ", $row["team_id"], "</h1>";
+														echo "<h1><strong>Team Name:</strong> ", $row["team_name"], "</h1>";
+														echo "<h1><strong>Team Moniker:</strong> ", $row["team_moniker"], "</h1>";
+														echo "<h1><strong>Status:</strong> ", $row["team_status"] ? "Active" : "Inactive", "</h1><br>";
+													}	
+												}
+											}
+										?>
+<<<<<<< HEAD
+										<tr>
+											<td>
+												<div class="form-group">
+													<div class="col-md-5">
+														<input id="textinput" name="teamName" type="text" placeholder="Team Name" class="form-control input-md" required="" value="<?php if (isset($_POST['team_name'])) {echo $row['team_name'];} ?>">
+													</div>
+												</div>
+											</td>
+											<td>
+												<div class="form-group">
+													<div class="col-md-5">
+														<input id="textinput" name="teamMoniker" type="text" placeholder="Team Moniker" class="form-control input-md" required="" value="<?php if (isset($_POST['teamMoniker'])) {echo $_POST['teamMoniker'];} ?>">
+													</div>
+												</div>
+											</td>
+											<td>
+												<div class="form-group">
+													<div class="col-md-5">
+														<input id="textinput" name="teamMoniker" type="text" placeholder="Team Status" class="form-control input-md" required="" value="<?php if (isset($_POST['teamMoniker'])) {echo $_POST['teamMoniker'];} ?>">
+													</div>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+=======
+										</tbody>
+									</table>
+								</div>
+>>>>>>> 45c6c35889a08ced1785146bc90cd5cd142b18bb
 							</div>
 						</div>
 					</div>
@@ -266,8 +367,10 @@
 									?>
 								</div>
 							</div>
+<<<<<<< HEAD
 						</div>
 					</form>
+=======
 					<!-- /.container-fluid -->	
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
@@ -312,6 +415,7 @@
 							</div>
 						</div>
 					</div>
+>>>>>>> 45c6c35889a08ced1785146bc90cd5cd142b18bb
 				</div>
 									
 			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
