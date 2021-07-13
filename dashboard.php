@@ -111,7 +111,7 @@
                                                 Teams Profile</div></a>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                            <i class="fas fa-users fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -127,7 +127,7 @@
                                                 Players Profile</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                            <i class="fas fa-user-circle fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -162,7 +162,7 @@
                                                 Statistical Maintenance</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                            <i class="fas fa-chart-bar fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
