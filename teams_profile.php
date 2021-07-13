@@ -26,7 +26,6 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	
-	
 	-->
 
 </head>
@@ -181,7 +180,6 @@
 									</tbody>
 								</table>
 							</div>
-<<<<<<< HEAD
 						</div>
 					</div>
 					<div class="card shadow mb-4">
@@ -199,20 +197,6 @@
 										</tr>
 									</thead>
 									<tbody>
-=======
-							<div class="card-body">
-								<div class="table-responsive">
-									<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-										<thead>
-											<tr>
-												<th>Team ID</th>
-												<th>Team Name</th>
-												<th>Team Moniker</th>
-												<th>Team Status</th>
-											</tr>
-										</thead>
-										<tbody>
->>>>>>> 45c6c35889a08ced1785146bc90cd5cd142b18bb
 										<?php
 										
 											if (isset($_GET['team_id']))
@@ -250,7 +234,6 @@
 												}
 											}
 										?>
-<<<<<<< HEAD
 										<tr>
 											<td>
 												<div class="form-group">
@@ -276,11 +259,6 @@
 										</tr>
 									</tbody>
 								</table>
-=======
-										</tbody>
-									</table>
-								</div>
->>>>>>> 45c6c35889a08ced1785146bc90cd5cd142b18bb
 							</div>
 						</div>
 					</div>
@@ -367,55 +345,8 @@
 									?>
 								</div>
 							</div>
-<<<<<<< HEAD
 						</div>
 					</form>
-=======
-					<!-- /.container-fluid -->	
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">Edit Team</h6>
-						</div>
-						<div class="card-body">
-							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-									<thead>
-										<tr>
-											<th>Team Name</th>
-											<th>Team Moniker</th>
-											<th>Operation</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>
-												<div class="form-group">
-													<div class="col-md-5">
-														<input id="textinput" name="teamName" type="text" placeholder="Team Name" class="form-control input-md" required="" value="<?php if (isset($_POST['teamName'])) {echo $_POST['teamName'];} ?>">
-													</div>
-												</div>
-											</td>
-											<td>
-												<div class="form-group">
-													<div class="col-md-5">
-														<input id="textinput" name="teamMoniker" type="text" placeholder="Team Moniker" class="form-control input-md" required="" value="<?php if (isset($_POST['teamMoniker'])) {echo $_POST['teamMoniker'];} ?>">
-													</div>
-												</div>
-											</td>
-											<td>
-												<div class="form-group">
-													<div class="col-md-6">
-														<button id="add" name="add" class="btn btn-primary">EDIT</button>
-													</div>
-												</div>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
->>>>>>> 45c6c35889a08ced1785146bc90cd5cd142b18bb
 				</div>
 									
 			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
