@@ -26,6 +26,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	
+	
 	-->
 
 </head>
@@ -128,19 +129,18 @@
 									</div> 
 								</div>
 							</div>
-						</div>
-						<div class="card-body">
-							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-									<thead>
-										<tr>
-											<th>Team ID</th>
-											<th>Team Name</th>
-											<th>Team Moniker</th>
-											<th>Team Status</th>
-										</tr>
-									</thead>
-									<tbody>
+							<div class="card-body">
+								<div class="table-responsive">
+									<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+										<thead>
+											<tr>
+												<th>Team ID</th>
+												<th>Team Name</th>
+												<th>Team Moniker</th>
+												<th>Team Status</th>
+											</tr>
+										</thead>
+										<tbody>
 										<?php
 											$hostName = "localhost";
 											$userName = "root";
@@ -178,8 +178,9 @@
 											}
 											mysqli_close($connection);
 										?>
-									</tbody>
-								</table>
+										</tbody>
+									</table>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -266,8 +267,6 @@
 									?>
 								</div>
 							</div>
-						</div>
-					</form>
 					<!-- /.container-fluid -->	
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
