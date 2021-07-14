@@ -19,19 +19,9 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-	
-	<!--ANAB
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	
-	-->
-
 </head>
 
 <body id="page-top">
-
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -194,6 +184,7 @@
 											<th>Team Name</th>
 											<th>Team Moniker</th>
 											<th>Status</th>
+											<th>Operation</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -225,7 +216,6 @@
 												{
 													while ($row = mysqli_fetch_assoc($result)) 
 													{
-														
 														echo "<h1><strong>Team ID:</strong> ", $row["team_id"], "</h1>";
 														echo "<h1><strong>Team Name:</strong> ", $row["team_name"], "</h1>";
 														echo "<h1><strong>Team Moniker:</strong> ", $row["team_moniker"], "</h1>";
@@ -235,24 +225,33 @@
 											}
 										?>
 										<tr>
+											<form action="process.php" method="POST">
+												<input type="hidden" name="id" value="<?php echo $id; ?> 
 											<td>
 												<div class="form-group">
-													<div class="col-md-5">
-														<input id="textinput" name="teamName" type="text" placeholder="Team Name" class="form-control input-md" required="" value="<?php if (isset($_POST['team_name'])) {echo $row['team_name'];} ?>">
+													<div class="col-md-5">											
+														<input id="textinput" name="teamName" type="text" placeholder="Enter Team Name" class="form-control input-md" required="" value="<?php echo $team_name; ?>">
 													</div>
 												</div>
 											</td>
 											<td>
 												<div class="form-group">
 													<div class="col-md-5">
-														<input id="textinput" name="teamMoniker" type="text" placeholder="Team Moniker" class="form-control input-md" required="" value="<?php if (isset($_POST['teamMoniker'])) {echo $_POST['teamMoniker'];} ?>">
+														<input id="textinput" name="teamMoniker" type="text" placeholder="Team Moniker" class="form-control input-md" required="" value="<?php echo $team_moniker;?>">
 													</div>
 												</div>
 											</td>
 											<td>
 												<div class="form-group">
 													<div class="col-md-5">
-														<input id="textinput" name="teamMoniker" type="text" placeholder="Team Status" class="form-control input-md" required="" value="<?php if (isset($_POST['teamMoniker'])) {echo $_POST['teamMoniker'];} ?>">
+														<input id="textinput" name="teamMoniker" type="text" placeholder="Team Status" class="form-control input-md" required="" value="<?php echo $team_status;?>">
+													</div>
+												</div>
+											</td>
+											<td>
+												<div class="form-group"> 
+													<div class="col-md-6">
+															<button type="submit" class="btn btn-primary" name="update">UPDATE</button>
 													</div>
 												</div>
 											</td>
@@ -343,6 +342,7 @@
 											}
 										}
 									?>
+									
 								</div>
 							</div>
 						</div>
@@ -389,7 +389,5 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
-
 </body>
-
 </html>
