@@ -225,8 +225,6 @@
 											}
 										?>
 										<tr>
-											<form action="process.php" method="POST">
-												<input type="hidden" name="id" value="<?php echo $id; ?> 
 											<td>
 												<div class="form-group">
 													<div class="col-md-5">											
