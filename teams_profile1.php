@@ -110,6 +110,7 @@
 										<tr>
 										<td style="padding:0 10px;"><input style="width:300px;" id="textinput" name="filterKeyword" type="text" placeholder="Type team name keyword..." class="form-control input-md" value="<?php echo isset($_POST['filterKeyword']) ? $_POST['filterKeyword'] : (isset($_SESSION['filterKeyword']) ? $_SESSION['filterKeyword'] : ''); ?>"></td>
 										<td><button id="button1id" name="search" class="btn btn-primary">Search</button></td>
+										<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#teamaddmodal">Add</button></td>
 										<tr>
 										</table>
 									</div>
@@ -201,7 +202,37 @@
 												mysqli_close($connection);
 											}
 										?>
-
+<!-- Modal -->
+<div class="modal fade" id="teamaddmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Team</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+	  <form action="add_teams.php" method="POST"> 
+      <div class="modal-body"> 
+			<div class="form-group">
+				<label>Team Name</label>
+				<input type="text" name="team_name" id="team_name" class="form-control" placeholder="Enter Team Name">
+			</div>
+												
+			<div class="form-group">
+				<label>Team Moniker</label>
+				<input type="text" name="team_moniker" id="team_moniker" class="form-control" placeholder="Enter Team Moniker">
+			</div>
+      </div>
+	  </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button id="add" name="add" type="submit" class="insertdata btn btn-primary">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+																
 										<!-- Modal -->
 										<div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 											<div class="modal-dialog">
