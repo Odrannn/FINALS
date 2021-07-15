@@ -169,51 +169,48 @@
 											}
 										?>
 
-<!-- Modal -->
-<div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">EDIT</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		  <span aria-hidden="true">&times;</span>
-		</button>
-      </div>
-	  
-	  <form action="" method="POST">
-	  
-      <div class="modal-body">
-		<input type="hidden" name="update_id" id="update_id">
-		<div class="form-group">
-			<label>TEAM NAME</label>
-			<input type="text" name="team_name" id="team_name" class="form-control" placeholder="Enter Team Name">
-		</div>
-		
-		<div class="form-group">
-			<label>TEAM MONIKER</label>
-			<input type="text" name="team_moniker" id="team_moniker" class="form-control" placeholder="Enter Team Moniker">
-		</div>
-		
-		<div class="form-group">
-			<label>TEAM STATUS</label>
-			<input type="text" name="team_status" id="team_status"class="form-control" placeholder="Enter Team Status">
-		</div>
-		
-		
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save Data</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
+										<!-- Modal -->
+										<div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="exampleModalLabel">EDIT</h5>
+													</div>
+											  
+													<form action="" method="POST">
+											  
+													<div class="modal-body">
+														<input type="hidden" name="update_id" id="update_id">
+														<div class="form-group">
+															<label>TEAM NAME</label>
+															<input type="text" name="team_name" id="team_name" class="form-control" placeholder="Enter Team Name">
+														</div>
+												
+														<div class="form-group">
+															<label>TEAM MONIKER</label>
+															<input type="text" name="team_moniker" id="team_moniker" class="form-control" placeholder="Enter Team Moniker">
+														</div>
+														
+														<div class="form-group">
+															<label>TEAM STATUS</label>
+															<input type="text" name="team_status" id="team_status"class="form-control" placeholder="Enter Team Status">
+														</div>
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+														<button type="submit" class="btn btn-primary">Save Data</button>
+													</div>
+												</div>
+											</div>
+										</div>
 									</tbody>
 								</table>
 							</div>
 						</div>
 					</div>
+					
+					<!-- ========================================================================================-->
+					
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-primary">Edit Team</h6>
@@ -401,7 +398,7 @@
 
 	<script>
 	
-	$(document).ready(function){
+	$(document).ready(function(){
 		$('.editbtn').on('click', function() {
 			$('#editmodal').modal('show');
 		
@@ -409,7 +406,7 @@
 				
 				var data = $tr.teams("td").map(function(){
 					return $(this).text();
-				}}.get();
+				}).get();
 				
 				console.log(data);
 				$('#update_id').val(data[0]);
@@ -420,5 +417,6 @@
 				
 		});
 	});
+	</script>
 </body>
 </html>
