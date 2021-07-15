@@ -106,8 +106,12 @@
 							<form class="form-horizontal" action="" method="post">
 								<div class="form-group" style ="width:100%">
 									<div class="col-md-5">
-										<input id="textinput" name="filterKeyword" type="text" placeholder="Type team name keyword..." class="form-control input-md" value="<?php echo isset($_POST['filterKeyword']) ? $_POST['filterKeyword'] : (isset($_SESSION['filterKeyword']) ? $_SESSION['filterKeyword'] : ''); ?>">
-										<button id="button1id" name="search" class="btn btn-primary">Search</button>
+										<table>
+										<tr>
+										<td style="padding:0 10px;"><input style="width:300px;" id="textinput" name="filterKeyword" type="text" placeholder="Type team name keyword..." class="form-control input-md" value="<?php echo isset($_POST['filterKeyword']) ? $_POST['filterKeyword'] : (isset($_SESSION['filterKeyword']) ? $_SESSION['filterKeyword'] : ''); ?>"></td>
+										<td><button id="button1id" name="search" class="btn btn-primary">Search</button></td>
+										<tr>
+										</table>
 									</div>
 								</div>
 							</form>
@@ -127,21 +131,22 @@
 									<tbody>
 										
 										<?php
-											if (isset($_POST['filterKeyword']))
-											{
-												$hostName = "localhost";
-												$userName = "root";
-												$password = "";
-												$dbName = "pba";
+											$hostName = "localhost";
+											$userName = "root";
+											$password = "";
+											$dbName = "pba";
 
-												$connection = mysqli_connect($hostName, $userName, $password, $dbName);
-								
-												if (!$connection) 
-												{
-													die("Connection failed: " . mysqli_connect_error());
-												}
-												
+											$connection = mysqli_connect($hostName, $userName, $password, $dbName);
+							
+											if (!$connection) 
+											{
+												die("Connection failed: " . mysqli_connect_error());
+											}
+											
+											if (isset($_POST['filterKeyword']) )
+											{
 												$sql = "SELECT * FROM teams WHERE team_name LIKE '%" . $_POST['filterKeyword'] . "%'";
+												
 												$result = mysqli_query($connection, $sql);
 												
 												if (!$result || mysqli_num_rows($result) == 0)
@@ -156,7 +161,35 @@
 													while ($row = mysqli_fetch_assoc($result)) 
 													{
 														echo "<tr class='" . ($counter == 1 ? "" : "success") . "'>";
-														echo "<th scope='row'>", $row["team_id"], "</th>";
+														echo "<td scope='row'>", $row["team_id"], "</ts>";
+														echo "<td>", $row["team_name"], "</td>";
+														echo "<td>", $row["team_moniker"], "</td>";
+														echo "<td>", $row["team_status"] ? "Active" : "Inactive", "</td>";
+														echo "<td><button type='button' class='btn btn-primary editbtn'>Edit </button></td>";
+														echo "</tr>";
+														$counter = $counter == 0 ? 1 : 0;
+													}	
+												}
+												mysqli_close($connection);
+											}
+											else{
+												$sql = "SELECT * FROM teams";
+												
+												$result = mysqli_query($connection, $sql);
+												
+												if (!$result || mysqli_num_rows($result) == 0)
+												{	
+													echo "<tr>";
+													echo "<td colspan='5'><center><h2>Record not found!...</center></h2></td>";
+													echo "</tr>";
+												} 
+												else 
+												{
+													$counter = 0;
+													while ($row = mysqli_fetch_assoc($result)) 
+													{
+														echo "<tr class='" . ($counter == 1 ? "" : "success") . "'>";
+														echo "<td scope='row'>", $row["team_id"], "</ts>";
 														echo "<td>", $row["team_name"], "</td>";
 														echo "<td>", $row["team_moniker"], "</td>";
 														echo "<td>", $row["team_status"] ? "Active" : "Inactive", "</td>";
@@ -177,28 +210,28 @@
 														<h5 class="modal-title" id="exampleModalLabel">EDIT</h5>
 													</div>
 											  
-													<form action="" method="POST">
+													<form action="update_teams.php" method="POST">
 											  
 													<div class="modal-body">
 														<input type="hidden" name="update_id" id="update_id">
 														<div class="form-group">
-															<label>TEAM NAME</label>
+															<label>Team Name</label>
 															<input type="text" name="team_name" id="team_name" class="form-control" placeholder="Enter Team Name">
 														</div>
 												
 														<div class="form-group">
-															<label>TEAM MONIKER</label>
+															<label>Team Moniker</label>
 															<input type="text" name="team_moniker" id="team_moniker" class="form-control" placeholder="Enter Team Moniker">
 														</div>
 														
 														<div class="form-group">
-															<label>TEAM STATUS</label>
+															<label>Team Status (1-Active  0-Inactive)</label>
 															<input type="text" name="team_status" id="team_status"class="form-control" placeholder="Enter Team Status">
 														</div>
 													</div>
 													<div class="modal-footer">
 														<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-														<button type="submit" name="updatedata" class="btn btn-primary">Save Data</button>
+														<button type="submit" name="updatedata" class="btn btn-primary">Update Data</button>
 													</div>
 												</div>
 											</div>
@@ -209,59 +242,8 @@
 						</div>
 					</div>
 					
-					<!-- ========================================================================================-->
+					<!-- ========================================================================================
 					
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">Edit Team</h6>
-						</div>
-						<div class="card-body">
-							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-									<thead>
-										<tr>
-											<th>Team Name</th>
-											<th>Team Moniker</th>
-											<th>Status</th>
-											<th>Operation</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>
-												<div class="form-group">
-													<div class="col-md-5">											
-														<input id="textinput" name="teamName" type="text" placeholder="Enter Team Name" class="form-control input-md" required="" value="<?php echo $team_name; ?>">
-													</div>
-												</div>
-											</td>
-											<td>
-												<div class="form-group">
-													<div class="col-md-5">
-														<input id="textinput" name="teamMoniker" type="text" placeholder="Team Moniker" class="form-control input-md" required="" value="<?php echo $team_moniker;?>">
-													</div>
-												</div>
-											</td>
-											<td>
-												<div class="form-group">
-													<div class="col-md-5">
-														<input id="textinput" name="teamMoniker" type="text" placeholder="Team Status" class="form-control input-md" required="" value="<?php echo $team_status;?>">
-													</div>
-												</div>
-											</td>
-											<td>
-												<div class="form-group"> 
-													<div class="col-md-6">
-															<button type="submit" class="btn btn-primary" name="update">UPDATE</button>
-													</div>
-												</div>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
 					<form class="form-horizontal" action="" method="post">
 						<div class="card shadow mb-4">
 							<div class="card-header py-3">
@@ -349,7 +331,7 @@
 						</div>
 					</form>
 				</div>
-									
+			-->					
 			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
@@ -404,7 +386,7 @@
 		
 				$tr = $(this).closest('tr');
 				
-				var data = $tr.teams("td").map(function(){
+				var data = $tr.children("td").map(function(){
 					return $(this).text();
 				}).get();
 				
@@ -412,8 +394,12 @@
 				$('#update_id').val(data[0]);
 				$('#team_name').val(data[1]);
 				$('#team_moniker').val(data[2]);
-				$('#team_status').val(data[3]);
-				
+				if(data[3]=="Active"){
+					$('#team_status').val(1);
+				}
+				else{
+					$('#team_status').val(0);
+				}
 				
 		});
 	});
