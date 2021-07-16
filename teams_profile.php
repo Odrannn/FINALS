@@ -252,12 +252,12 @@
 									<input type="hidden" name="add_id" id="add_id">
 									<div class="form-group">
 										<label>Team Name</label>
-										<input type="text" name="teamName" id="teamName" class="form-control" placeholder="Enter Team Name">
+										<input type="text" name="teamName" id="teamName" class="form-control" placeholder="Enter Team Name" required >
 									</div>
 							
 									<div class="form-group">
 										<label>Team Moniker</label>
-										<input type="text" name="teamMoniker" id="teamMoniker" class="form-control" placeholder="Enter Team Moniker">
+										<input type="text" name="teamMoniker" id="teamMoniker" class="form-control" placeholder="Enter Team Moniker" required>
 									</div>
 								</div>
 								<div class="modal-footer">
