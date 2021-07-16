@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+	
 </head>
 
 <body id="page-top">
@@ -26,13 +27,11 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-dark sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav sidebar sidebar-dark accordion" style="background-color:#242424;" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
+                <img src="img/pbalogo.png" style="width:50px;margin-left:10px;">
                 <div class="sidebar-brand-text mx-3">PBA Teams Maintenance</div>
             </a>
 
@@ -90,10 +89,7 @@
                 <div class="container-fluid">
 					<br>
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Team Profile</h1>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank"
-                            href="https://datatables.net">official DataTables documentation</a>.</p>
+                    <h1 class="h3 mb-2 text-gray-800">Teams Profile</h1><br>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -105,8 +101,13 @@
 							<form class="form-horizontal" action="" method="post">
 								<div class="form-group" style ="width:100%">
 									<div class="col-md-5">
-										<input id="textinput" name="filterKeyword" type="text" placeholder="Type team name keyword..." class="form-control input-md" value="<?php echo isset($_POST['filterKeyword']) ? $_POST['filterKeyword'] : (isset($_SESSION['filterKeyword']) ? $_SESSION['filterKeyword'] : ''); ?>">
-										<button id="button1id" name="search" class="btn btn-primary">Search</button>
+										<table>
+										<tr>
+										<td style="padding:0 10px;"><input style="width:300px;" id="textinput" name="filterKeyword" type="text" placeholder="Type team name keyword..." class="form-control input-md" value="<?php echo isset($_POST['filterKeyword']) ? $_POST['filterKeyword'] : (isset($_SESSION['filterKeyword']) ? $_SESSION['filterKeyword'] : ''); ?>"></td>
+										<td><button id="search" name="search" class="btn btn-outline-dark">Search</button></td>
+										<td><button type='button' class="btn btn-outline-dark">Add Team</button></td>
+										<tr>
+										</table>
 									</div>
 								</div>
 							</form>
@@ -126,21 +127,22 @@
 									<tbody>
 										
 										<?php
-											if (isset($_POST['filterKeyword']))
-											{
-												$hostName = "localhost";
-												$userName = "root";
-												$password = "";
-												$dbName = "pba";
+											$hostName = "localhost";
+											$userName = "root";
+											$password = "";
+											$dbName = "pba";
 
-												$connection = mysqli_connect($hostName, $userName, $password, $dbName);
-								
-												if (!$connection) 
-												{
-													die("Connection failed: " . mysqli_connect_error());
-												}
-												
+											$connection = mysqli_connect($hostName, $userName, $password, $dbName);
+							
+											if (!$connection) 
+											{
+												die("Connection failed: " . mysqli_connect_error());
+											}
+											
+											if (isset($_POST['filterKeyword']) )
+											{
 												$sql = "SELECT * FROM teams WHERE team_name LIKE '%" . $_POST['filterKeyword'] . "%'";
+												
 												$result = mysqli_query($connection, $sql);
 												
 												if (!$result || mysqli_num_rows($result) == 0)
@@ -155,11 +157,39 @@
 													while ($row = mysqli_fetch_assoc($result)) 
 													{
 														echo "<tr class='" . ($counter == 1 ? "" : "success") . "'>";
-														echo "<th scope='row'>", $row["team_id"], "</th>";
+														echo "<td scope='row'>", $row["team_id"], "</ts>";
 														echo "<td>", $row["team_name"], "</td>";
 														echo "<td>", $row["team_moniker"], "</td>";
 														echo "<td>", $row["team_status"] ? "Active" : "Inactive", "</td>";
-														echo "<td><a href='teams_profile.php?team_id=" . $row["team_id"] . "'><button id='add' name='add' class='btn btn-primary'>Edit </button></td>";
+														echo "<td><button type='button' class='btn btn-primary editbtn'>Edit </button></td>";
+														echo "</tr>";
+														$counter = $counter == 0 ? 1 : 0;
+													}	
+												}
+												mysqli_close($connection);
+											}
+											else{
+												$sql = "SELECT * FROM teams";
+												
+												$result = mysqli_query($connection, $sql);
+												
+												if (!$result || mysqli_num_rows($result) == 0)
+												{	
+													echo "<tr>";
+													echo "<td colspan='5'><center><h2>Record not found!...</center></h2></td>";
+													echo "</tr>";
+												} 
+												else 
+												{
+													$counter = 0;
+													while ($row = mysqli_fetch_assoc($result)) 
+													{
+														echo "<tr class='" . ($counter == 1 ? "" : "success") . "'>";
+														echo "<td scope='row'>", $row["team_id"], "</ts>";
+														echo "<td>", $row["team_name"], "</td>";
+														echo "<td>", $row["team_moniker"], "</td>";
+														echo "<td>", $row["team_status"] ? "Active" : "Inactive", "</td>";
+														echo "<td><center><button style='background-color:#242424;' type='button' class='btn btn-dark editbtn'>Edit </button></center></td>";
 														echo "</tr>";
 														$counter = $counter == 0 ? 1 : 0;
 													}	
@@ -167,186 +197,77 @@
 												mysqli_close($connection);
 											}
 										?>
+
+										<!-- Edit Modal -->
+										<div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="exampleModalLabel">EDIT TEAM</h5>
+													</div>
+											  
+													<form action="update_teams.php" method="POST">
+											  
+													<div class="modal-body">
+														<input type="hidden" name="update_id" id="update_id">
+														<div class="form-group">
+															<label>Team Name</label>
+															<input type="text" name="team_name" id="team_name" class="form-control" placeholder="Enter Team Name">
+														</div>
+												
+														<div class="form-group">
+															<label>Team Moniker</label>
+															<input type="text" name="team_moniker" id="team_moniker" class="form-control" placeholder="Enter Team Moniker">
+														</div>
+														
+														<div class="form-group">
+															<label>Team Status (1-Active  0-Inactive)</label>
+															<input type="text" name="team_status" id="team_status"class="form-control" placeholder="Enter Team Status">
+														</div>
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+														<button type="submit" name="updatedata" class="btn btn-primary">Update Team</button>
+													</div>
+													</form>
+												</div>
+											</div>
+										</div>
 									</tbody>
 								</table>
 							</div>
 						</div>
 					</div>
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">Edit Team</h6>
-						</div>
-						<div class="card-body">
-							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-									<thead>
-										<tr>
-											<th>Team Name</th>
-											<th>Team Moniker</th>
-											<th>Status</th>
-											<th>Operation</th>
-										</tr>
-									</thead>
-									<tbody>
-										<?php
-										
-											if (isset($_GET['team_id']))
-											{
-												$hostName = "localhost";
-												$userName = "root";
-												$password = "";
-												$dbName = "pba";
-
-												$connection = mysqli_connect($hostName, $userName, $password, $dbName);
-											
-												if (!$connection) 
-												{
-													die("Connection failed: " . mysqli_connect_error());
-												}
-											
-												$sql = "SELECT * FROM teams where team_id = " . $_GET['team_id'];
-												$result = mysqli_query($connection, $sql);
-											
-												mysqli_close($connection);
-												if (!$result || mysqli_num_rows($result) == 0)
-												{	
-													echo "<h1>Record not found!.</h1>";
-												} 
-												else 
-												{
-													while ($row = mysqli_fetch_assoc($result)) 
-													{
-														echo "<h1><strong>Team ID:</strong> ", $row["team_id"], "</h1>";
-														echo "<h1><strong>Team Name:</strong> ", $row["team_name"], "</h1>";
-														echo "<h1><strong>Team Moniker:</strong> ", $row["team_moniker"], "</h1>";
-														echo "<h1><strong>Status:</strong> ", $row["team_status"] ? "Active" : "Inactive", "</h1><br>";
-													}	
-												}
-											}
-										?>
-										<tr>
-											<td>
-												<div class="form-group">
-													<div class="col-md-5">											
-														<input id="textinput" name="teamName" type="text" placeholder="Enter Team Name" class="form-control input-md" required="" value="<?php echo $team_name; ?>">
-													</div>
-												</div>
-											</td>
-											<td>
-												<div class="form-group">
-													<div class="col-md-5">
-														<input id="textinput" name="teamMoniker" type="text" placeholder="Team Moniker" class="form-control input-md" required="" value="<?php echo $team_moniker;?>">
-													</div>
-												</div>
-											</td>
-											<td>
-												<div class="form-group">
-													<div class="col-md-5">
-														<input id="textinput" name="teamMoniker" type="text" placeholder="Team Status" class="form-control input-md" required="" value="<?php echo $team_status;?>">
-													</div>
-												</div>
-											</td>
-											<td>
-												<div class="form-group"> 
-													<div class="col-md-6">
-															<button type="submit" class="btn btn-primary" name="update">UPDATE</button>
-													</div>
-												</div>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-					<form class="form-horizontal" action="" method="post">
-						<div class="card shadow mb-4">
-							<div class="card-header py-3">
-								<h6 class="m-0 font-weight-bold text-primary">Team Registration</h6>
-							</div>
-							<div class="card-body">
-								<div class="table-responsive">
-									<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-										<thead>
-											<tr>
-												<th>Team Name</th>
-												<th>Team Moniker</th>
-												<th>Operation</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>
-													<div class="form-group">
-														<div class="col-md-5">
-															<input id="textinput" name="teamName" type="text" placeholder="Team Name" class="form-control input-md" required="" value="<?php if (isset($_POST['teamName'])) {echo $_POST['teamName'];} ?>">
-														</div>
-													</div>
-												</td>
-												<td>
-													<div class="form-group">
-														<div class="col-md-5">
-															<input id="textinput" name="teamMoniker" type="text" placeholder="Team Moniker" class="form-control input-md" required="" value="<?php if (isset($_POST['teamMoniker'])) {echo $_POST['teamMoniker'];} ?>">
-														</div>
-													</div>
-												</td>
-												<td>
-													<div class="form-group">
-														<div class="col-md-6">
-															<button id="add" name="add" class="btn btn-primary">Add Team</button>
-														</div>
-													</div>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-									<?php
-										if (isset($_POST['add']))
-										{
-											if (isset($_POST['teamName']) and isset($_POST['teamMoniker']))
-											{
-												$hostName = "localhost";
-												$userName = "root";
-												$password = "";
-												$dbName = "pba";
-
-												$connection = mysqli_connect($hostName, $userName, $password, $dbName);
-										
-												if (!$connection) 
-												{
-													die("Connection failed: " . mysqli_connect_error());
-												}
-											
-												$sql = "SELECT * FROM teams WHERE team_name = '" . $_POST['teamName'] . "'";
-												$result = mysqli_query($connection, $sql);
-											
-												if(!$result || mysqli_num_rows($result) == 0)
-												{	
-													$sql = "INSERT INTO teams (team_name, team_moniker, team_status) VALUES ('" . $_POST['teamName'] . "', '" . $_POST['teamMoniker'] . "', 1)";
-											
-													if (mysqli_query($connection, $sql)) 
-													{
-														echo "<div class='alert alert-success' role='alert'><strong>Sucess:</strong> New team successfully created!</div>";
-													}
-													else
-													{
-														echo "<h1>Error: " . $sql . "<br>" . mysqli_error($connection) . "</h1>";
-													}
-												} 
-												else 
-												{
-													echo "<div class='alert alert-danger' role='alert'><strong>Error:</strong> Team Name already existing!...</div>";	
-												}
-											}
-										}
-									?>
-									
+					<!-- Add Modal -->
+					<div class="modal fade" id="addmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">ADD TEAM</h5>
 								</div>
+						  
+								<form action="add_team.php" method="POST">
+						  
+								<div class="modal-body">
+									<input type="hidden" name="add_id" id="add_id">
+									<div class="form-group">
+										<label>Team Name</label>
+										<input type="text" name="teamName" id="teamName" class="form-control" placeholder="Enter Team Name">
+									</div>
+							
+									<div class="form-group">
+										<label>Team Moniker</label>
+										<input type="text" name="teamMoniker" id="teamMoniker" class="form-control" placeholder="Enter Team Moniker">
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+									<button type="submit" name="adddata" class="btn btn-primary">Add Team</button>
+								</div>
+								</form>
 							</div>
 						</div>
-					</form>
-				</div>
-									
+					</div>
 			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
@@ -387,5 +308,42 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
+	
+	<!-- MODAL -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha512-U6K1YLIFUWcvuw5ucmMtT9HH4t0uz3M366qrF5y4vnyH6dgDzndlcGvH/Lz5k8NFh80SN95aJ5rqGZEdaQZ7ZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+	<script>
+	
+	$(document).ready(function(){
+		$('.editbtn').on('click', function() {
+			$('#editmodal').modal('show');
+		
+				$tr = $(this).closest('tr');
+				
+				var data = $tr.children("td").map(function(){
+					return $(this).text();
+				}).get();
+				
+				console.log(data);
+				$('#update_id').val(data[0]);
+				$('#team_name').val(data[1]);
+				$('#team_moniker').val(data[2]);
+				if(data[3]=="Active"){
+					$('#team_status').val(1);
+				}
+				else{
+					$('#team_status').val(0);
+				}
+				
+		});
+	});
+	$(document).ready(function(){
+		$('.addbtn').on('click', function() {
+			$('#addmodal').modal('show');
+		});
+	});
+	</script>
 </body>
 </html>

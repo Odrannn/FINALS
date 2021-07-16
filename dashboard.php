@@ -63,6 +63,7 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
+					
                         <h6 class="collapse-header">Menu:</h6>
                         <a class="collapse-item" href="teams_profile.php">Teams Profile</a>
                         <a class="collapse-item" href="">Players Profile</a>
@@ -100,8 +101,9 @@
 				
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2" >
-								<img src="img/jordan.jpg" style="width:100%;height:50%;position:absolute">
+                            <div class="card border-left-primary shadow h-100 py-0" >
+							
+								<img src="img/team.jpg" style="width:100%;height:50%;position:relative; opacity:100%; margin-left:100;">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
@@ -118,7 +120,8 @@
                         </div>
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card border-left-success shadow h-100 py-0">
+								<img src="img/player.jpg" style="width:100%;height:50%;position:relative; opacity:100%; margin-left:100;">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
@@ -135,7 +138,8 @@
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
+                            <div class="card border-left-warning shadow h-100 py-0">
+								<img src="img/arena.jpg" style="width:100%;height:50%;position:relative; opacity:100%; margin-left:100;">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
@@ -153,7 +157,8 @@
 
                         <!-- Pending Requests Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card border-left-warning shadow h-100 py-0">
+							<img src="img/statistical.jpg" style="width:100%;height:50%;position:relative; opacity:100%; margin-top:-10;">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">

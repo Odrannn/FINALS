@@ -19,7 +19,7 @@
 		if($query_run)
 		{
 			echo "<script> alert('Team Updated'); </script>";
-			header ("location:teams_profile1.php");
+			header ("location:teams_profile.php");
 		}
 		else
 		{
