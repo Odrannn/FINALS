@@ -105,7 +105,7 @@
 										<tr>
 										<td style="padding:0 10px;"><input style="width:300px;" id="textinput" name="filterKeyword" type="text" placeholder="Type team name keyword..." class="form-control input-md" value="<?php echo isset($_POST['filterKeyword']) ? $_POST['filterKeyword'] : (isset($_SESSION['filterKeyword']) ? $_SESSION['filterKeyword'] : ''); ?>"></td>
 										<td><button id="search" name="search" class="btn btn-outline-dark">Search</button></td>
-										<td><button type='button' class="btn btn-outline-dark">Add Team</button></td>
+										<td><button type='button' name="addbtn" class="btn btn-outline-dark addbtn">Add Team</button></td>
 										<tr>
 										</table>
 									</div>
@@ -161,7 +161,7 @@
 														echo "<td>", $row["team_name"], "</td>";
 														echo "<td>", $row["team_moniker"], "</td>";
 														echo "<td>", $row["team_status"] ? "Active" : "Inactive", "</td>";
-														echo "<td><button type='button' class='btn btn-primary editbtn'>Edit </button></td>";
+														echo "<td><center><button style='background-color:#242424;' type='button' class='btn btn-dark editbtn'>Edit </button></center></td>";
 														echo "</tr>";
 														$counter = $counter == 0 ? 1 : 0;
 													}	
