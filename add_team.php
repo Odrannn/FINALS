@@ -16,8 +16,6 @@
 		$count = mysqli_num_rows($result);
 		
 		if($count > 0) {
-			echo "<script>alert('TEAM NAME ALREADY EXIST!');</script>";
-			$_POST['addmessage'] = "0";
 			header ("location:teams_profile.php");
 			return false;
 		}
@@ -26,13 +24,11 @@
 		$count = mysqli_num_rows($result);
 		
 		if($count > 0) {
-			echo "<script>alert('TEAM NAME ALREADY EXIST!');</script>";
-			$_POST['addmessage'] = "0";
 			header ("location:teams_profile.php");
 			return false;
 		}
 		
 		$query_run = mysqli_query($connection, $sql);
-		
+		header ("location:teams_profile.php");
 	}
 ?>
