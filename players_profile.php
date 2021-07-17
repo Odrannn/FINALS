@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>PBA Teams Maintenance - Teams Profile</title>
+    <title>PBA Teams Maintenance - Players Profile</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -89,12 +89,12 @@
                 <div class="container-fluid">
 					<br>
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Teams Profile</h1><br>
+                    <h1 class="h3 mb-2 text-gray-800">Players Profile</h1><br>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Teams</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Players</h6>
                         </div>
 						<div>
 						<br>
@@ -103,9 +103,9 @@
 									<div class="col-md-5">
 										<table>
 										<tr>
-										<td style="padding:0 10px;"><input style="width:300px;" id="textinput" name="filterKeyword" type="text" placeholder="Type team name keyword..." class="form-control input-md" value="<?php echo isset($_POST['filterKeyword']) ? $_POST['filterKeyword'] : (isset($_SESSION['filterKeyword']) ? $_SESSION['filterKeyword'] : ''); ?>"></td>
+										<td style="padding:0 10px;"><input style="width:300px;" id="textinput" name="filterKeyword" type="text" placeholder="Type player name keyword..." class="form-control input-md" value="<?php echo isset($_POST['filterKeyword']) ? $_POST['filterKeyword'] : (isset($_SESSION['filterKeyword']) ? $_SESSION['filterKeyword'] : ''); ?>"></td>
 										<td><button id="search" name="search" class="btn btn-outline-dark">Search</button></td>
-										<td><button style='background-color:#242424;' type='button' name="addbtn" class="btn btn-dark addbtn">Add Team</button></td>
+										<td><button style='background-color:#242424;' type='button' name="addbtn" class="btn btn-dark addbtn">Add Player</button></td>
 										</tr>
 										</table>
 									</div>
@@ -117,10 +117,12 @@
 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<thead>
 										<tr>
+											<th scope="col">Player ID</th>
+											<th scope="col">Player Name</th>
+											<th scope="col">Jersey Number</th>
+											<th scope="col">Primary Playing Position</th>
+											<th scope="col">Height</th>
 											<th scope="col">Team ID</th>
-											<th scope="col">Team Name</th>
-											<th scope="col">Team Moniker</th>
-											<th scope="col">Status</th>
 											<th scope="col">Operation</th>
 										</tr>
 									</thead>
@@ -141,14 +143,14 @@
 											
 											if (isset($_POST['filterKeyword']) )
 											{
-												$sql = "SELECT * FROM teams WHERE team_name LIKE '%" . $_POST['filterKeyword'] . "%'";
+												$sql = "SELECT * FROM players WHERE player_name LIKE '%" . $_POST['filterKeyword'] . "%'";
 												
 												$result = mysqli_query($connection, $sql);
 												
 												if (!$result || mysqli_num_rows($result) == 0)
 												{	
 													echo "<tr>";
-													echo "<td colspan='5'><center><h2>Record not found!...</center></h2></td>";
+													echo "<td colspan='7'><center><h2>Record not found!...</center></h2></td>";
 													echo "</tr>";
 												} 
 												else 
@@ -157,10 +159,22 @@
 													while ($row = mysqli_fetch_assoc($result)) 
 													{
 														echo "<tr class='" . ($counter == 1 ? "" : "success") . "'>";
-														echo "<td scope='row'>", $row["team_id"], "</ts>";
-														echo "<td>", $row["team_name"], "</td>";
-														echo "<td>", $row["team_moniker"], "</td>";
-														echo "<td>", $row["team_status"] ? "Active" : "Inactive", "</td>";
+														echo "<td scope='row'>", $row["player_id"], "</ts>";
+														echo "<td>", $row["player_name"], "</td>";
+														echo "<td>", $row["jersey_number"], "</td>";
+														if($row["primary_playing_position"] == 1){
+															echo "<td>Point Guard</td>";
+														} else if ($row["primary_playing_position"] == 2){
+															echo "<td>Shooting Guard</td>";
+														} else if ($row["primary_playing_position"] == 3){
+															echo "<td>Small Forward</td>";
+														} else if ($row["primary_playing_position"] == 4){
+															echo "<td>Power Forward</td>";
+														} else {
+															echo "<td>Center</td>";
+														}
+														echo "<td>", $row["height"], "m</td>";
+														echo "<td>", $row["team_id"], "</td>";
 														echo "<td><center><button style='background-color:#242424;' type='button' class='btn btn-dark editbtn'>Edit </button></center></td>";
 														echo "</tr>";
 														$counter = $counter == 0 ? 1 : 0;
@@ -169,14 +183,14 @@
 												mysqli_close($connection);
 											}
 											else{
-												$sql = "SELECT * FROM teams";
+												$sql = "SELECT * FROM players";
 												
 												$result = mysqli_query($connection, $sql);
 												
 												if (!$result || mysqli_num_rows($result) == 0)
 												{	
 													echo "<tr>";
-													echo "<td colspan='5'><center><h2>Record not found!...</center></h2></td>";
+													echo "<td colspan='7'><center><h2>Record not found!...</center></h2></td>";
 													echo "</tr>";
 												} 
 												else 
@@ -185,10 +199,22 @@
 													while ($row = mysqli_fetch_assoc($result)) 
 													{
 														echo "<tr class='" . ($counter == 1 ? "" : "success") . "'>";
-														echo "<td scope='row'>", $row["team_id"], "</ts>";
-														echo "<td>", $row["team_name"], "</td>";
-														echo "<td>", $row["team_moniker"], "</td>";
-														echo "<td>", $row["team_status"] ? "Active" : "Inactive", "</td>";
+														echo "<td scope='row'>", $row["player_id"], "</ts>";
+														echo "<td>", $row["player_name"], "</td>";
+														echo "<td>", $row["jersey_number"], "</td>";
+														if($row["primary_playing_position"] == 1){
+															echo "<td>Point Guard</td>";
+														} else if ($row["primary_playing_position"] == 2){
+															echo "<td>Shooting Guard</td>";
+														} else if ($row["primary_playing_position"] == 3){
+															echo "<td>Small Forward</td>";
+														} else if ($row["primary_playing_position"] == 4){
+															echo "<td>Power Forward</td>";
+														} else {
+															echo "<td>Center</td>";
+														}
+														echo "<td>", $row["height"], "m</td>";
+														echo "<td>", $row["team_id"], "</td>";
 														echo "<td><center><button style='background-color:#242424;' type='button' class='btn btn-dark editbtn'>Edit </button></center></td>";
 														echo "</tr>";
 														$counter = $counter == 0 ? 1 : 0;
@@ -243,21 +269,36 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel">ADD TEAM</h5>
+									<h5 class="modal-title" id="exampleModalLabel">ADD PLAYER</h5>
 								</div>
 						  
-								<form action="add_team.php" method="POST">
+								<form action="add_player.php" method="POST">
 						  
 								<div class="modal-body">
 									<input type="hidden" name="add_id" id="add_id">
 									<div class="form-group">
-										<label>Team Name</label>
-										<input type="text" name="teamName" id="teamName" class="form-control" placeholder="Enter Team Name" required >
+										<label>Player Name (Fname, Gname, Mname)</label>
+										<input type="text" name="playerName" id="playerName" class="form-control" placeholder="Enter Player Name" required >
 									</div>
 							
 									<div class="form-group">
-										<label>Team Moniker</label>
-										<input type="text" name="teamMoniker" id="teamMoniker" class="form-control" placeholder="Enter Team Moniker" required>
+										<label>Jersey Number</label>
+										<input type="number" name="jerseyNumber" id="jerseyNumber" class="form-control" placeholder="Enter Jersey Number" required>
+									</div>
+									
+									<div class="form-group">
+										<label>Primary Playing Position<br>(1 - Point Guard, 2 - Shooting Guard, 3 - Small Forward, 4 - Power Forward, 5 - Center)</label>
+										<input type="number" min= 1 max= 5 name="primaryPlayingPosition" id="primaryPlayingPosition" class="form-control" placeholder="Enter Playing Position" required>
+									</div>
+									
+									<div class="form-group">
+										<label>Height (meters)</label>
+										<input type="number" step="any" name="height" id="height" class="form-control" placeholder="Enter Height" required>
+									</div>
+									
+									<div class="form-group">
+										<label>Team ID</label>
+										<input type="number" name="teamID" id="teamID" class="form-control" placeholder="Enter Team ID" required>
 									</div>
 								</div>
 								<div class="modal-footer">
@@ -268,6 +309,7 @@
 							</div>
 						</div>
 					</div>
+					
 			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
