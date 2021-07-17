@@ -105,8 +105,8 @@
 										<tr>
 										<td style="padding:0 10px;"><input style="width:300px;" id="textinput" name="filterKeyword" type="text" placeholder="Type team name keyword..." class="form-control input-md" value="<?php echo isset($_POST['filterKeyword']) ? $_POST['filterKeyword'] : (isset($_SESSION['filterKeyword']) ? $_SESSION['filterKeyword'] : ''); ?>"></td>
 										<td><button id="search" name="search" class="btn btn-outline-dark">Search</button></td>
-										<td><button type='button' name="addbtn" class="btn btn-outline-dark addbtn">Add Team</button></td>
-										<tr>
+										<td><button style='background-color:#242424;' type='button' name="addbtn" class="btn btn-dark addbtn">Add Team</button></td>
+										</tr>
 										</table>
 									</div>
 								</div>
@@ -226,8 +226,8 @@
 														</div>
 													</div>
 													<div class="modal-footer">
-														<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-														<button type="submit" name="updatedata" class="btn btn-primary">Update Team</button>
+														<button style='background-color:#242424;' type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+														<button type="submit" name="updatedata" class="btn btn-outline-dark">Update Team</button>
 													</div>
 													</form>
 												</div>
@@ -261,8 +261,8 @@
 									</div>
 								</div>
 								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-									<button type="submit" name="adddata" class="btn btn-primary">Add Team</button>
+									<button style='background-color:#242424;' type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+									<button type="submit" name="adddata" class="btn btn-outline-dark">Add Team</button>
 								</div>
 								</form>
 							</div>

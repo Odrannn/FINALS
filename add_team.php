@@ -4,7 +4,6 @@
 	$password = "";
 	$dbName = "pba";
 	$connection = mysqli_connect($hostName, $userName, $password, $dbName);
-	
 	if(isset($_POST['adddata']))
 	{
 		$tname = $_POST['teamName'];
@@ -17,8 +16,9 @@
 		$count = mysqli_num_rows($result);
 		
 		if($count > 0) {
-			echo "alert('TEAM NAME ALREADY EXIST!')";
-			
+			echo "<script>alert('TEAM NAME ALREADY EXIST!');</script>";
+			$_POST['addmessage'] = "0";
+			header ("location:teams_profile.php");
 			return false;
 		}
 		$check_duplicate_moniker = "SELECT team_moniker FROM teams WHERE team_moniker = '$tmoniker'";
@@ -26,24 +26,13 @@
 		$count = mysqli_num_rows($result);
 		
 		if($count > 0) {
-			echo "alert('MONIKER ALREADY EXIST!')";
-			
+			echo "<script>alert('TEAM NAME ALREADY EXIST!');</script>";
+			$_POST['addmessage'] = "0";
+			header ("location:teams_profile.php");
 			return false;
 		}
 		
-		
-		
 		$query_run = mysqli_query($connection, $sql);
 		
-		
-		if($query_run)
-		{
-			echo "<script> alert('Team Added'); </script>";
-			header ("location:teams_profile.php");
-		}
-		else
-		{
-			echo "<script> alert('Team Not Added'); </script>";
-		}
 	}
 ?>
