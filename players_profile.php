@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>PBA Teams Maintenance - Players Profile</title>
+    <title>PBA Maintenance - Players Profile</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -173,7 +173,7 @@
 														} else {
 															echo "<td>Center</td>";
 														}
-														echo "<td>", $row["height"], "m</td>";
+														echo "<td>", $row["height"], "</td>";
 														echo "<td>", $row["team_id"], "</td>";
 														echo "<td><center><button style='background-color:#242424;' type='button' class='btn btn-dark editbtn'>Edit </button></center></td>";
 														echo "</tr>";
@@ -213,7 +213,7 @@
 														} else {
 															echo "<td>Center</td>";
 														}
-														echo "<td>", $row["height"], "m</td>";
+														echo "<td>", $row["height"], "</td>";
 														echo "<td>", $row["team_id"], "</td>";
 														echo "<td><center><button style='background-color:#242424;' type='button' class='btn btn-dark editbtn'>Edit </button></center></td>";
 														echo "</tr>";
@@ -229,33 +229,65 @@
 											<div class="modal-dialog">
 												<div class="modal-content">
 													<div class="modal-header">
-														<h5 class="modal-title" id="exampleModalLabel">EDIT TEAM</h5>
+														<h5 class="modal-title" id="exampleModalLabel">EDIT PLAYER</h5>
 													</div>
 											  
-													<form action="update_teams.php" method="POST">
-											  
+													<form action="update_player.php" method="POST">
+						  
 													<div class="modal-body">
 														<input type="hidden" name="update_id" id="update_id">
 														<div class="form-group">
-															<label>Team Name</label>
-															<input type="text" name="team_name" id="team_name" class="form-control" placeholder="Enter Team Name">
+															<label>Player Name (Fname, Gname, Mname)</label>
+															<input type="text" name="player_name" id="player_name" class="form-control" placeholder="Enter Player Name" required >
 														</div>
 												
 														<div class="form-group">
-															<label>Team Moniker</label>
-															<input type="text" name="team_moniker" id="team_moniker" class="form-control" placeholder="Enter Team Moniker">
+															<label>Jersey Number</label>
+															<input type="number" name="jersey_number" id="jersey_number" class="form-control" placeholder="Enter Jersey Number" required>
 														</div>
 														
 														<div class="form-group">
-															<label>Team Status (1-Active  0-Inactive)</label>
-															<input type="text" name="team_status" id="team_status"class="form-control" placeholder="Enter Team Status">
+															<label>Primary Playing Position<br>(1)-PG (2)-SG (3)-SF (4)-PF (5)-C</label>
+															<input type="number" min= 1 max= 5 name="position" id="position" class="form-control" placeholder="Enter Playing Position" required>
 														</div>
+														
+														<div class="form-group">
+															<label>Height (meters)</label>
+															<input type="number" step="any" name="player_height" id="player_height" class="form-control" placeholder="Enter Height" required>
+														</div>
+														
+														<div class="form-group">
+															<label>Team ID</label>
+															<input type="number" name="team_id" id="team_id" class="form-control" placeholder="Enter Team ID" required>
+															
+															<?php
+																$hostName = "localhost";
+																$userName = "root";
+																$password = "";
+																$dbName = "pba";
+																$connection = mysqli_connect($hostName, $userName, $password, $dbName);
+																	
+																$sql = "SELECT * FROM teams";
+																$result = mysqli_query($connection, $sql);
+																echo "<br>Game ID List<br>";
+																while ($row = mysqli_fetch_assoc($result)) 
+																{
+																	echo $row["team_id"] . " - ";
+																	echo $row["team_name"]. " ";
+																	echo $row["team_moniker"]."<br>";
+																}	
+																mysqli_close($connection);
+															?>
+														</div>
+														
 													</div>
+													
 													<div class="modal-footer">
-														<button style='background-color:#242424;' type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
-														<button type="submit" name="updatedata" class="btn btn-outline-dark">Update Team</button>
+														<button style='background-color:#242424;' type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+														<button type="submit" name="updatedata" class="btn btn-outline-dark">Update Player</button>
 													</div>
 													</form>
+													
 												</div>
 											</div>
 										</div>
@@ -287,7 +319,7 @@
 									</div>
 									
 									<div class="form-group">
-										<label>Primary Playing Position<br>(1 - Point Guard, 2 - Shooting Guard, 3 - Small Forward, 4 - Power Forward, 5 - Center)</label>
+										<label>Primary Playing Position<br>(1)-PG (2)-SG (3)-SF (4)-PF (5)-C</label>
 										<input type="number" min= 1 max= 5 name="primaryPlayingPosition" id="primaryPlayingPosition" class="form-control" placeholder="Enter Playing Position" required>
 									</div>
 									
@@ -370,15 +402,21 @@
 				
 				console.log(data);
 				$('#update_id').val(data[0]);
-				$('#team_name').val(data[1]);
-				$('#team_moniker').val(data[2]);
-				if(data[3]=="Active"){
-					$('#team_status').val(1);
+				$('#player_name').val(data[1]);
+				$('#jersey_number').val(data[2]);
+				if(data[3] == "Point Guard"){
+					$('#position').val(1);
+				} else if (data[3] == "Shooting Guard"){
+					$('#position').val(2);
+				} else if (data[3] == "Small Forward"){
+					$('#position').val(3);
+				} else if (data[3] == "Power Forward"){
+					$('#position').val(4); 
+				} else {
+					$('#position').val(5);
 				}
-				else{
-					$('#team_status').val(0);
-				}
-				
+				$('#player_height').val(data[4]);
+				$('#team_id').val(data[5]);
 		});
 	});
 	$(document).ready(function(){
