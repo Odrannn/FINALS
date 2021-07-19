@@ -331,6 +331,25 @@
 									<div class="form-group">
 										<label>Team ID</label>
 										<input type="number" name="teamID" id="teamID" class="form-control" placeholder="Enter Team ID" required>
+										
+										<?php
+											$hostName = "localhost";
+											$userName = "root";
+											$password = "";
+											$dbName = "pba";
+											$connection = mysqli_connect($hostName, $userName, $password, $dbName);
+												
+											$sql = "SELECT * FROM teams";
+											$result = mysqli_query($connection, $sql);
+											echo "<br>Game ID List<br>";
+											while ($row = mysqli_fetch_assoc($result)) 
+											{
+												echo $row["team_id"] . " - ";
+												echo $row["team_name"]. " ";
+												echo $row["team_moniker"]."<br>";
+											}	
+											mysqli_close($connection);
+										?>
 									</div>
 								</div>
 								<div class="modal-footer">
