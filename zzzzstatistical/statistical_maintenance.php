@@ -110,6 +110,7 @@
 										</table>
 									</div>
 								</div>
+								<button style="margin:0 20px;" type='button' name="filterbtn" class="btn btn-success filterbtn">Filter</button>
 							</form>
 						</div>
 						<div class="card-body">
@@ -145,12 +146,16 @@
 												die("Connection failed: " . mysqli_connect_error());
 											}
 											
-											if (isset($_POST['filterKeyword']) )
+											if (isset($_POST['filterKeyword']) && $_POST['filterKeyword'] != "")
 											{
-												$sql = "SELECT * FROM stats WHERE player_name LIKE '%" . $_POST['filterKeyword'] . "%'";
+												$sql = "SELECT player_id FROM players WHERE player_name LIKE '%" . $_POST['filterKeyword'] . "%'";
 												
 												$result = mysqli_query($connection, $sql);
+												$row = mysqli_fetch_assoc($result);
+												$playerID = $row["player_id"];
 												
+												$sql = "SELECT * FROM stats WHERE player_id = '$playerID'";
+												$result = mysqli_query($connection, $sql);
 												if (!$result || mysqli_num_rows($result) == 0)
 												{	
 													echo "<tr>";
@@ -163,26 +168,20 @@
 													while ($row = mysqli_fetch_assoc($result)) 
 													{
 														echo "<tr class='" . ($counter == 1 ? "" : "success") . "'>";
-														echo "<td scope='row'>", $row["player_id"], "</ts>";
-														echo "<td>", $row["player_name"], "</td>";
-														echo "<td>", $row["jersey_number"], "</td>";
-														if($row["primary_playing_position"] == 1){
-															echo "<td>Point Guard</td>";
-														} else if ($row["primary_playing_position"] == 2){
-															echo "<td>Shooting Guard</td>";
-														} else if ($row["primary_playing_position"] == 3){
-															echo "<td>Small Forward</td>";
-														} else if ($row["primary_playing_position"] == 4){
-															echo "<td>Power Forward</td>";
-														} else {
-															echo "<td>Center</td>";
-														}
-														echo "<td>", $row["height"], "</td>";
+														echo "<td scope='row'>", $row["player_stat_id"], "</ts>";
+														echo "<td>", $row["game_id"], "</td>";
+														echo "<td>", $row["player_id"],"</td>";
 														echo "<td>", $row["team_id"], "</td>";
-														echo "<td><center><button style='background-color:#242424;' type='button' class='btn btn-dark editbtn'>Edit </button></center></td>";
+														echo "<td>", $row["jersey_number"], "</td>";
+														echo "<td>", $row["points"], "</td>";
+														echo "<td>", $row["rebounds"], "</td>";
+														echo "<td>", $row["assists"], "</td>";
+														echo "<td>", $row["steals"], "</td>";
+														echo "<td>", $row["blocks"], "</td>";
+														echo "<td><center><button type='button' class='btn btn-primary editbtn'>Edit </button></center></td>";
 														echo "</tr>";
 														$counter = $counter == 0 ? 1 : 0;
-													}	
+													}
 												}
 												mysqli_close($connection);
 											}
@@ -197,7 +196,7 @@
 													echo "<tr class='" . ($counter == 1 ? "" : "success") . "'>";
 													echo "<td scope='row'>", $row["player_stat_id"], "</ts>";
 													echo "<td>", $row["game_id"], "</td>";
-													echo "<td>", $row["player_id"], "</td>";
+													echo "<td>", $row["player_id"],"</td>";
 													echo "<td>", $row["team_id"], "</td>";
 													echo "<td>", $row["jersey_number"], "</td>";
 													echo "<td>", $row["points"], "</td>";
@@ -205,7 +204,7 @@
 													echo "<td>", $row["assists"], "</td>";
 													echo "<td>", $row["steals"], "</td>";
 													echo "<td>", $row["blocks"], "</td>";
-													echo "<td><center><button style='background-color:#242424;' type='button' class='btn btn-dark editbtn'>Edit </button></center></td>";
+													echo "<td><center><button  type='button' class='btn btn-primary editbtn'>Edit </button></center></td>";
 													echo "</tr>";
 													$counter = $counter == 0 ? 1 : 0;
 												}
@@ -263,8 +262,8 @@
 													</div>
 													
 													<div class="modal-footer">
-														<button style='background-color:#242424;' type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-														<button type="submit" name="updatedata" class="btn btn-outline-dark">Update Stat</button>
+														<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+														<button type="submit" name="updatedata" class="btn btn-primary">Update Stat</button>
 													</div>
 													</form>
 													
@@ -323,14 +322,56 @@
 									</div>
 								</div>
 								<div class="modal-footer">
-									<button style='background-color:#242424;' type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-									<button type="submit" name="adddata" class="btn btn-outline-dark">Add Stat</button>
+									<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+									<button style='background-color:#242424;' type="submit" name="adddata" class="btn btn-dark">Add Stat</button>
 								</div>
 								</form>
 							</div>
 						</div>
 					</div>
-					
+					<!-- Filter Modal -->
+					<div class="modal fade" id="filtermodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">TOP 10 STATISTICAL LEADERS</h5>
+								</div>
+						  
+								<form action="add_stat.php" method="POST">
+						  
+								<div class="modal-body">
+									<div class="form-group">
+										<label>Type</label>
+										<select class="form-select">
+											<option>Total</option>
+											<option>Average</option>
+										</select>
+										<label>Scope</label>
+										<select class="form-select">
+											<option>Teams</option>
+											<option>All-Time</option>
+											<option>Year</option>
+										</select>
+										<label>Categories</label>
+										<select class="form-select">
+											<option>Points</option>
+											<option>Rebounds</option>
+											<option>Assists</option>
+											<option>Steals</option>
+											<option>Blocks</option>
+										</select>
+									</div>
+							
+									
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+									<button type="submit" name="adddata" class="btn btn-success">Submit</button>
+								</div>
+								</form>
+							</div>
+						</div>
+					</div>
 			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
@@ -403,6 +444,11 @@
 	$(document).ready(function(){
 		$('.addbtn').on('click', function() {
 			$('#addmodal').modal('show');
+		});
+	});
+	$(document).ready(function(){
+		$('.filterbtn').on('click', function() {
+			$('#filtermodal').modal('show');
 		});
 	});
 	</script>
