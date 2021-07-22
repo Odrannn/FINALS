@@ -11,6 +11,7 @@
 		
 		$gameid = $_POST['game_id'];
 		$playerid = $_POST['player_id'];
+		$playerid = $playerid[0];
 		
 		$sql = "SELECT * FROM players WHERE player_id = '$playerid'";
 		$result = mysqli_query($connection,$sql);

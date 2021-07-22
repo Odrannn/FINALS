@@ -110,7 +110,30 @@
 										</table>
 									</div>
 								</div>
-								<button style="margin:0 20px;" type='button' name="filterbtn" class="btn btn-success filterbtn">Filter</button>
+								<div style="margin:0 20px;display:inline-block">
+									<div class="form-group">
+										<label>Type:</label>
+										<select name = "type" style="margin:0 20px;padding:0 10px;" class="form-select">
+											<option>Total</option>
+											<option>Average</option>
+										</select>
+										<label>Scope:</label>
+										<select name = "scope" style="padding:0 10px;margin:0 20px;" class="form-select">
+											<option>Teams</option>
+											<option>All-Time</option>
+											<option>Year</option>
+										</select>
+										<label>Categories:</label>
+										<select name = "category" style="padding:0 0 0 10px ;margin:0 20px;" class="form-select">
+											<option>Points</option>
+											<option>Rebounds</option>
+											<option>Assists</option>
+											<option>Steals</option>
+											<option>Blocks</option>
+										</select>
+									</div>
+								</div>
+								<button type='submit' name="filterbtn" class="btn btn-success filterbtn">Filter</button>
 							</form>
 						</div>
 						<div class="card-body">
@@ -293,7 +316,24 @@
 							
 									<div class="form-group">
 										<label>Player ID</label>
-										<input type="number" name="playerID" id="playerID" class="form-control" placeholder="Enter Player ID" required>
+										<?php
+										$hostName = "localhost";
+										$userName = "root";
+										$password = "";
+										$dbName = "pba";
+
+										$connection = mysqli_connect($hostName, $userName, $password, $dbName);
+										$sql = "SELECT * FROM players";
+												
+										$result = mysqli_query($connection, $sql);
+										echo "<select name='playerID'>";
+										while ($row = mysqli_fetch_assoc($result)) 
+										{
+											echo "<option>", $row["player_id"]." - " . $row["player_name"], "</option>";
+										}
+										echo "</select>";
+										mysqli_close($connection);
+										?>
 									</div>
 									
 									<div class="form-group">
@@ -329,46 +369,146 @@
 							</div>
 						</div>
 					</div>
-					<!-- Filter Modal -->
-					<div class="modal fade" id="filtermodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel">TOP 10 STATISTICAL LEADERS</h5>
-								</div>
-						  
-								<form action="add_stat.php" method="POST">
-						  
-								<div class="modal-body">
-									<div class="form-group">
-										<label>Type</label>
-										<select class="form-select">
-											<option>Total</option>
-											<option>Average</option>
-										</select>
-										<label>Scope</label>
-										<select class="form-select">
-											<option>Teams</option>
-											<option>All-Time</option>
-											<option>Year</option>
-										</select>
-										<label>Categories</label>
-										<select class="form-select">
-											<option>Points</option>
-											<option>Rebounds</option>
-											<option>Assists</option>
-											<option>Steals</option>
-											<option>Blocks</option>
-										</select>
-									</div>
+					<div class="card shadow mb-4">
+                        <div class="card-header py-3">
+							<?php
+								if (isset($_POST['category'])){
+									if (isset($_POST['scope'])){
+										echo "<h6 class='m-0 font-weight-bold text-primary'>Top 10 Leaderboards (". $_POST['scope']." - ".$_POST['category'].")</h6>";
+									}	
+								}
+							?>
+                        </div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+									<thead>
+										<tr>
+											<th scope="col">TOP #</th>
+											<?php
+												if (isset($_POST['scope'])){
+													if ($_POST['scope'] == "Teams"){
+														echo "<th scope='col'>". $_POST['scope'] ."</th>";
+													}
+													else{
+														echo "<th scope='col'>Player Name</th>";
+													}
+												}
+											?>
+											<?php
+												if (isset($_POST['category'])){
+													echo "<th scope='col'>". $_POST['type']." ". $_POST['category'] ."</th>";
+												}
+											?>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+											$hostName = "localhost";
+											$userName = "root";
+											$password = "";
+											$dbName = "pba";
+
+											$connection = mysqli_connect($hostName, $userName, $password, $dbName);
 							
-									
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-									<button type="submit" name="adddata" class="btn btn-success">Submit</button>
-								</div>
-								</form>
+											if (!$connection) 
+											{
+												die("Connection failed: " . mysqli_connect_error());
+											}
+											
+											if (isset($_POST['filterbtn']))
+											{
+												$type = $_POST['type'];
+												$scope = $_POST['scope'];
+												$category = $_POST['category'];
+												
+												if ($scope == "Teams") {
+													if ($type == "Total")
+													{
+														if ($category == "Points"){
+															$sql = "SELECT team_id, sum(points) as stat FROM stats GROUP BY team_id ORDER BY stat DESC";
+														} else if ($category == "Rebounds"){
+															$sql = "SELECT team_id, sum(rebounds) as stat FROM stats GROUP BY team_id ORDER BY stat DESC";
+														} else if ($category == "Assists"){
+															$sql = "SELECT team_id, sum(assists) as stat FROM stats GROUP BY team_id ORDER BY stat DESC";
+														} else if ($category == "Steals"){
+															$sql = "SELECT team_id, sum(steals) as stat FROM stats GROUP BY team_id ORDER BY stat DESC";
+														} else {
+															$sql = "SELECT team_id, sum(blocks) as stat FROM stats GROUP BY pteam_id ORDER BY stat DESC";
+														}
+													} else 
+													{
+														if ($category == "Points"){
+															$sql = "SELECT team_id, avg(points) as stat FROM stats GROUP BY team_id ORDER BY stat DESC";
+														} else if ($category == "Rebounds"){
+															$sql = "SELECT team_id, avg(rebounds) as stat FROM stats GROUP BY team_id ORDER BY stat DESC";
+														} else if ($category == "Assists"){
+															$sql = "SELECT team_id, avg(assists) as stat FROM stats GROUP BY team_id ORDER BY stat DESC";
+														} else if ($category == "Steals"){
+															$sql = "SELECT team_id, avg(steals) as stat FROM stats GROUP BY team_id ORDER BY stat DESC";
+														} else {
+															$sql = "SELECT team_id, avg(blocks) as stat FROM stats GROUP BY team_id ORDER BY stat DESC";
+														}
+													}
+												}
+												else{
+													if ($type == "Total")
+													{
+														if ($category == "Points"){
+															$sql = "SELECT player_id, sum(points) as stat FROM stats GROUP BY player_id ORDER BY stat DESC";
+														} else if ($category == "Rebounds"){
+															$sql = "SELECT player_id, sum(rebounds) as stat FROM stats GROUP BY player_id ORDER BY stat DESC";
+														} else if ($category == "Assists"){
+															$sql = "SELECT player_id, sum(assists) as stat FROM stats GROUP BY player_id ORDER BY stat DESC";
+														} else if ($category == "Steals"){
+															$sql = "SELECT player_id, sum(steals) as stat FROM stats GROUP BY player_id ORDER BY stat DESC";
+														} else {
+															$sql = "SELECT player_id, sum(blocks) as stat FROM stats GROUP BY player_id ORDER BY stat DESC";
+														}
+													} else 
+													{
+														if ($category == "Points"){
+															$sql = "SELECT player_id, avg(points) as stat FROM stats GROUP BY player_id ORDER BY stat DESC";
+														} else if ($category == "Rebounds"){
+															$sql = "SELECT player_id, avg(rebounds) as stat FROM stats GROUP BY player_id ORDER BY stat DESC";
+														} else if ($category == "Assists"){
+															$sql = "SELECT player_id, avg(assists) as stat FROM stats GROUP BY player_id ORDER BY stat DESC";
+														} else if ($category == "Steals"){
+															$sql = "SELECT player_id, avg(steals) as stat FROM stats GROUP BY player_id ORDER BY stat DESC";
+														} else {
+															$sql = "SELECT player_id, avg(blocks) as stat FROM stats GROUP BY player_id ORDER BY stat DESC";
+														}
+													}
+												}
+												
+												$result = mysqli_query($connection, $sql);
+												$count = 1;
+												
+												while ($row = mysqli_fetch_assoc($result) and $count <= 10) 
+												{
+													
+													echo "<tr class='" . ($counter == 1 ? "" : "success") . "'>";
+													echo "<td scope='row'>", $count, "</ts>";
+													if ($scope == "Teams"){
+														$slqplayer = "SELECT * FROM teams WHERE team_id =". $row['team_id'];
+														$resultplayer = mysqli_query($connection, $slqplayer);
+														$rowplayer = mysqli_fetch_assoc($resultplayer);
+														echo "<td>", $rowplayer["team_name"],"</td>";
+													}
+													else {
+														$slqplayer = "SELECT * FROM players WHERE player_id =". $row['player_id'];
+														$resultplayer = mysqli_query($connection, $slqplayer);
+														$rowplayer = mysqli_fetch_assoc($resultplayer);
+														echo "<td>", $rowplayer["player_name"],"</td>";
+													}
+													echo "<td>", $row["stat"],"</td>";
+													$count++;
+												}
+												mysqli_close($connection);
+											}
+										?>
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</div>
