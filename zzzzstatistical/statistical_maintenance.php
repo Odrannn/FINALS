@@ -381,11 +381,19 @@
                         </div>
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-									<thead>
-										<tr>
-											<th scope="col">TOP #</th>
-											<?php
+								<?php
+								$hostName = "localhost";
+								$userName = "root";
+								$password = "";
+								$dbName = "pba";
+
+								$connection = mysqli_connect($hostName, $userName, $password, $dbName);
+							
+								if ($_POST['scope'] !== "Year"){
+									echo "<table class='table table-bordered' id='dataTable' width='100%' cellspacing='0'>";
+									echo "<thead>";
+										echo "<tr>";
+											echo "<th scope='col'>TOP #</th>";
 												if (isset($_POST['scope'])){
 													if ($_POST['scope'] == "Teams"){
 														echo "<th scope='col'>". $_POST['scope'] ."</th>";
@@ -394,23 +402,14 @@
 														echo "<th scope='col'>Player Name</th>";
 													}
 												}
-											?>
-											<?php
+												
 												if (isset($_POST['category'])){
 													echo "<th scope='col'>". $_POST['type']." ". $_POST['category'] ."</th>";
 												}
-											?>
-										</tr>
-									</thead>
-									<tbody>
-										<?php
-											$hostName = "localhost";
-											$userName = "root";
-											$password = "";
-											$dbName = "pba";
-
-											$connection = mysqli_connect($hostName, $userName, $password, $dbName);
-							
+										echo "</tr>";
+										echo "<thead>";
+										echo "<tbody>";
+											
 											if (!$connection) 
 											{
 												die("Connection failed: " . mysqli_connect_error());
@@ -451,7 +450,7 @@
 														}
 													}
 												}
-												else{
+												else if($scope == "All-Time"){ 
 													if ($type == "Total")
 													{
 														if ($category == "Points"){
@@ -480,6 +479,9 @@
 														}
 													}
 												}
+												else {
+													return false;
+												}
 												
 												$result = mysqli_query($connection, $sql);
 												$count = 1;
@@ -488,7 +490,7 @@
 												{
 													
 													echo "<tr class='" . ($counter == 1 ? "" : "success") . "'>";
-													echo "<td scope='row'>", $count, "</ts>";
+													echo "<td scope='row'>", $count, "</td>";
 													if ($scope == "Teams"){
 														$slqplayer = "SELECT * FROM teams WHERE team_id =". $row['team_id'];
 														$resultplayer = mysqli_query($connection, $slqplayer);
@@ -506,9 +508,103 @@
 												}
 												mysqli_close($connection);
 											}
-										?>
-									</tbody>
-								</table>
+										
+										echo "</tbody>";
+									echo "</table>";
+								}
+								else if ($_POST['scope'] == "Year"){
+									$type = $_POST['type'];
+									$scope = $_POST['scope'];
+									$category = $_POST['category'];
+									$sql = "SELECT YEAR(game_year) as year FROM game_profile";
+									$result = mysqli_query($connection, $sql);
+									$years = [];
+									while ($row = mysqli_fetch_assoc($result)) 
+									{
+										if (in_array($row['year'], $years)){
+											
+										}
+										else {
+											array_push($years, $row['year']);
+										}
+									}
+									foreach ($years as $value) {
+										echo "<h1 align='center'>" . $value . "</h1><br>";
+										echo "<table class='table table-bordered' id='dataTable' width='100%' cellspacing='0'>";
+											echo "<thead>";
+												echo "<tr>";
+													echo "<th scope='col'>TOP #</th>";
+														if (isset($_POST['scope'])){
+															echo "<th scope='col'>Player Name</th>";
+														}
+														
+														if (isset($_POST['category'])){
+															echo "<th scope='col'>". $_POST['type']." ". $_POST['category'] ."</th>";
+														}
+												echo "</tr>";
+											echo "</thead>";
+											echo "<tbody>";
+											if ($type == "Total")
+											{
+												if ($category == "Points"){
+													$sqlyear = "SELECT player_id, sum(points) as stat FROM stats WHERE game_id in (SELECT game_id
+													FROM game_profile WHERE game_year LIKE '" . $value . "%') GROUP BY player_id ORDER BY stat DESC";
+												} else if ($category == "Rebounds"){
+													$sqlyear = "SELECT player_id, sum(rebounds) as stat FROM stats WHERE game_id in (SELECT game_id
+													FROM game_profile WHERE game_year LIKE '" . $value . "%') GROUP BY player_id ORDER BY stat DESC";
+												} else if ($category == "Assists"){
+													$sqlyear = "SELECT player_id, sum(assists) as stat FROM stats WHERE game_id in (SELECT game_id
+													FROM game_profile WHERE game_year LIKE '" . $value . "%') GROUP BY player_id ORDER BY stat DESC";
+												} else if ($category == "Steals"){
+													$sqlyear = "SELECT player_id, sum(steals) as stat FROM stats WHERE game_id in (SELECT game_id
+													FROM game_profile WHERE game_year LIKE '" . $value . "%') GROUP BY player_id ORDER BY stat DESC";
+												} else {
+													$sqlyear = "SELECT player_id, sum(blocks) as stat FROM stats WHERE game_id in (SELECT game_id
+													FROM game_profile WHERE game_year LIKE '" . $value . "%') GROUP BY player_id ORDER BY stat DESC";
+												}
+											} else 
+											{
+												if ($category == "Points"){
+													$sqlyear = "SELECT player_id, avg(points) as stat FROM stats WHERE game_id in (SELECT game_id
+													FROM game_profile WHERE game_year LIKE '" . $value . "%') GROUP BY player_id ORDER BY stat DESC";
+												} else if ($category == "Rebounds"){
+													$sqlyear = "SELECT player_id, avg(rebounds) as stat FROM stats WHERE game_id in (SELECT game_id
+													FROM game_profile WHERE game_year LIKE '" . $value . "%') GROUP BY player_id ORDER BY stat DESC";
+												} else if ($category == "Assists"){
+													$sqlyear = "SELECT player_id, avg(assists) as stat FROM stats WHERE game_id in (SELECT game_id
+													FROM game_profile WHERE game_year LIKE '" . $value . "%') GROUP BY player_id ORDER BY stat DESC";
+												} else if ($category == "Steals"){
+													$sqlyear = "SELECT player_id, avg(steals) as stat FROM stats WHERE game_id in (SELECT game_id
+													FROM game_profile WHERE game_year LIKE '" . $value . "%') GROUP BY player_id ORDER BY stat DESC";
+												} else {
+													$sqlyear = "SELECT player_id, avg(blocks) as stat FROM stats WHERE game_id in (SELECT game_id
+													FROM game_profile WHERE game_year LIKE '" . $value . "%') GROUP BY player_id ORDER BY stat DESC";
+												}
+											}
+											$result = mysqli_query($connection, $sqlyear);
+											
+											$count=1;
+											while ($row = mysqli_fetch_assoc($result) and $count <= 10) 
+											{
+												echo "<tr class='" . ($counter == 1 ? "" : "success") . "'>";
+												echo "<td scope='row'>", $count, "</td>";
+												$slqplayer = "SELECT * FROM players WHERE player_id =". $row['player_id'];
+												$resultplayer = mysqli_query($connection, $slqplayer);
+												$rowplayer = mysqli_fetch_assoc($resultplayer);
+												echo "<td>", $rowplayer["player_name"],"</td>";
+												if ($type == "Total"){
+													echo "<td>", $row["stat"],"</td>";
+												} else {
+													echo "<td>", round($row["stat"], 2), "</td>";
+												}
+												$count++;
+											}
+												echo "</tr>";
+											echo "</tbody>";
+											echo "</table>";
+									}
+								}
+								?>
 							</div>
 						</div>
 					</div>
